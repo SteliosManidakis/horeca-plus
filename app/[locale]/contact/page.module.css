@@ -1,0 +1,115 @@
+.contactWrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 16px 40px;
+}
+
+/* Title */
+.title { text-align: center; margin: 8px 0 24px; }
+.title h1 { margin: 0; font-size: 32px; line-height: 1.2; font-weight: 800; color: #4476CF; }
+.title p { margin: 6px 0 0; font-size: 18px; color: #555; }
+
+/* ROWS */
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: stretch; /* πολύ σημαντικό: τα cards τεντώνουν κάθετα */
+  margin-bottom: 24px;
+}
+@media (min-width: 960px) {
+  .row { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
+
+/* Generic card look */
+.card {
+  border: 1px solid #000000;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgb(0, 0, 0);
+  background: #fff;
+  padding: 16px;
+}
+
+/* Όταν θέλουμε το card να πάρει ακριβώς το ύψος της γραμμής */
+.stretchCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MEDIA: ίδια λογική container + περιεχόμενο */
+.mediaCard {
+  /* card χωρίς padding ώστε να γεμίσει με media */
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  background: #fff;
+  overflow: hidden;
+  height: 100%;
+  padding: 0;
+}
+
+/* top image: δίνουμε ratio για να “οδηγεί” το ύψος της πάνω σειράς */
+.topMediaBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;   /* <— ρύθμισε εδώ αν θες άλλο ύψος */
+}
+
+/* bottom map: γεμίζει 100% το ύψος που θα ορίσει η φόρμα */
+.mapBox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;      /* ασφάλεια σε mobile */
+}
+
+.mediaImg {
+  position: absolute !important;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mediaIframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 22px;       /* μικρότερο font */
+  line-height: 1.6;      /* πιο σφιχτό spacing */
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 20px;              /* μικρότερο κενό ανάμεσα στο εικονίδιο και το κείμενο */
+  margin: 20px 0;         /* λιγότερο περιθώριο ανάμεσα στις γραμμές */
+}
+
+.list a {
+  color: #111;
+  text-decoration: none;
+}
+
+.list a:hover {
+  text-decoration: underline;
+}
+
+/* αν θες όλο το κείμενο δεξιά να είναι στο κέντρο της κάρτας */
+.stretchCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: right; /* κάθετη στοίχιση στο κέντρο */
+}
+
+.formTitle { font-size: 20px; margin: 0 0 8px; color: #222; }

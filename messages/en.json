@@ -1,0 +1,202 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "casestudies": "Case Studies",
+    "contact": "Contact",
+    "title": "We help Hospitality & Tourism businesses",
+    "title2": "with practical Tools and Meaningful Proposals",
+    "cta": "Make the deference",
+    "title3": "with practical solutions that deliver Results",
+    "title4": "Our experience becomes your Advantage"
+  },
+  "newsletter": {
+    "title": "Stay in the loop",
+    "placeholder": "Your email",
+    "button": "Subscribe",
+    "success": "Thanks! You’re subscribed."
+  },
+  "footer": {
+    "copyright": "© HORECA Plus"
+  },
+  "home": {
+    "heroTitle": "Hospitality that performs",
+    "heroSubtitle": "Strategy, design and execution for HORECA brands."
+  },
+  
+  "about": { 
+    "title": "Who We Are",
+    "title2": "Horeca Plus – Your Strategic Partner in Hospitality and Tourism.",
+    "title3": "With over five decades of combined experience, we bring together expertise and deep industry knowledge to deliver meaningful solutions that truly support your business. This way, you have confidence in your decisions and grow your business with steady and measurable steps.",
+    "memberName": "Μανιδάκης Στέλιος",
+    "memberTitle": "Senior Business Analyst",
+    "memberDescription": "With over 20 years of experience in the hospitality and tourism sector, Stelios has held key roles such as Cost Controller Manager, Procurement Manager, Business Consultant, Production Manager, and Entrepreneur. He has managed large teams and complex projects, combining his deep knowledge of business planning with his ability to implement practical and efficient solutions. He specializes in cost management, process optimization, accounting support, and the development of customized software tools for businesses in the sector. His professionalism, technical expertise, and strategic thinking make a significant contribution to the growth and stability of any business aiming for progress.",
+    "memberName1": "Stratis Polychronis",
+    "memberTitle1": "HORECA Specialist",
+    "memberDescription1": "With more than 30 years of experience in the hospitality sector, Stratis possesses deep knowledge of the requirements and particularities of every stage of operating a food service establishment. He has the ability to identify and implement meaningful solutions to the challenges of a constantly evolving and demanding business environment. He specializes in procurement, with extensive experience in managing complex commercial agreements with food and beverage networks. His many years of expertise in the field of wine and spirits enable him to design efficient and profitable wine lists, tailored to the needs and character of each business. In addition, he has experience in staff training, with the goal of increasing sales and optimizing the customer experience."
+  },
+  
+  "services": {
+    "heroTitle": "Services that elevate your business",
+    "heroSubtitle": "We provide end-to-end services covering all critical stages of your operation: from financial analysis, costing and pricing strategy to equipment selection, supplier management, staff training and sales menu design.",
+    "introTitle": "What we offer",
+    "introText": "Our goal is to build viable, resilient and profitable businesses with practical tools, clear data and tailored guidance.",
+    "categories": [
+      {
+        "id": "finance",
+        "title": "Financial Planning & Strategy",
+        "description": "Financial models, costing, pricing and reports that drive focused decisions.",
+        "items": [
+          {
+            "id": "financial-planning",
+            "slug": "financial-planning",
+            "title": "Financial Planning",
+            "short": "We build a data-driven financial model to forecast profitability and support accurate decisions."
+          },
+          {
+            "id": "product-costing",
+            "slug": "product-costing",
+            "title": "Product & Service Costing",
+            "short": "Unit cost and margin analysis for full control of your pricing strategy."
+          },
+          {
+            "id": "pricing-policy",
+            "slug": "pricing-policy",
+            "title": "Pricing Strategy & Price Setting",
+            "short": "Pricing strategies based on cost, market and goals for a consistent and profitable positioning."
+          },
+          {
+            "id": "financial-reporting",
+            "slug": "financial-reporting",
+            "title": "Financial Analysis & Reporting",
+            "short": "KPIs and reports with clear interpretations that support targeted strategic decisions."
+          }
+        ]
+      },
+      {
+        "id": "ops",
+        "title": "Operations & Optimization",
+        "description": "Suppliers, inventory, equipment, menu, training and SOPs for efficient day-to-day operation.",
+        "items": [
+          {
+            "id": "supplier-selection",
+            "slug": "supplier-selection",
+            "title": "Supplier Evaluation & Selection",
+            "short": "We build a reliable supplier network for better pricing without compromising quality."
+          },
+          {
+            "id": "supplier-inventory",
+            "slug": "supplier-inventory",
+            "title": "Supplier & Inventory Monitoring",
+            "short": "We track purchasing costs and price fluctuations, produce reports and suggest corrective actions."
+          },
+          {
+            "id": "equipment-planning",
+            "slug": "equipment-planning",
+            "title": "Equipment Study & Selection",
+            "short": "Fit-for-purpose equipment proposals for maximum space and staff efficiency at controlled cost."
+          },
+          {
+            "id": "menu-design",
+            "slug": "menu-design",
+            "title": "Sales Menu Design",
+            "short": "Menu engineering with sales psychology to lift average check and enhance guest experience."
+          },
+          {
+            "id": "service-wine-training",
+            "slug": "service-wine-training",
+            "title": "Service & Wine Training",
+            "short": "Training in service and wine-pairing for a professional image and increased sales."
+          },
+          {
+            "id": "sops-compliance",
+            "slug": "sops-compliance",
+            "title": "SOPs & Compliance Control",
+            "short": "We create procedures, train your team and monitor adherence for consistency and fewer errors."
+          }
+        ]
+      },
+      {
+        "id": "support",
+        "title": "Support Services",
+        "description": "Trusted partners for accounting, HR, safety, licensing and HACCP.",
+        "items": [
+          {
+            "id": "accounting-support",
+            "slug": "accounting-support",
+            "title": "Comprehensive Accounting Support",
+            "short": "A dedicated partner who supports and advises across your accounting framework."
+          },
+          {
+            "id": "hr-payroll",
+            "slug": "hr-payroll",
+            "title": "HR & Payroll",
+            "short": "Specialized partner for contracts, ERGANI declarations, payroll and recruitment."
+          },
+          {
+            "id": "safety-technician",
+            "slug": "safety-technician",
+            "title": "Safety Technician",
+            "short": "Ensures compliance with safety measures for staff, guests and facilities."
+          },
+          {
+            "id": "licensed-engineer",
+            "slug": "licensed-engineer",
+            "title": "Licensed Engineer",
+            "short": "Handles licensing procedures and manages operational issues as they arise."
+          },
+          {
+            "id": "haccp",
+            "slug": "haccp",
+            "title": "HACCP",
+            "short": "Prerequisite programs, staff training and record-keeping compliance."
+          }
+        ]
+      }
+    ]
+  },
+  
+  "casestudies": { "title": "Case Studies" },
+ 
+  "contact": {
+    "titleTop": "Want to see how we can help?",
+    "subtitleTop": "Get in touch with us",
+    "phone": "+30 693 72 46 891",
+    "email": "horecaplusgr@gmail.com",
+    "socials": {
+      "facebook": "https://www.facebook.com/profile.php?id=61578298343155",
+      "facebookLabel": "facebook.com/horecaplus",
+      "instagram": "https://www.instagram.com/horecaplusgr?igsh=MTl1NWtrZnZrazJ5bg==",
+      "instagramLabel": "instagram.com/horecaplus",
+      "linkedin": "https://www.instagram.com/horecaplusgr?igsh=MTl1NWtrZnZrazJ5bg==",
+      "linkedinLabel": "linkedin.com/horecaplus"
+    },
+    
+    "name": "Name",
+    "emailLabel": "Email",
+    "city": "City/Area",
+    "message": "Message",
+    "send": "Send",
+    "success": "Thanks! Your message has been sent.",
+    "error": "Something went wrong. Please try again.",
+    "q_horeca": "Do you currently operate in food service (HORECA)?",
+    "q_tourism": "Do you currently operate in tourism?",
+    
+    "options": {
+      "yes": "yes",
+      "open": "no, I plan to open!"
+    },
+    
+    "hints": {
+      "horeca": "Choose one here or answer in the next question.",
+      "tourism": "You must answer here or the previous question."
+    },
+    
+    "errors": {
+      "nameRequired": "Please enter your name.",
+      "emailRequired": "Please enter your email.",
+      "segmentRequired": "Select an answer to one of the two questions (Food service or Tourism)."
+    }
+  }
+}

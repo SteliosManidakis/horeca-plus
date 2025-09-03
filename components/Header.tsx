@@ -16,7 +16,7 @@ export default function Header({ locale, messages }: Props) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
-  // Κλείσιμο με click έξω, αλλά όχι όταν πατάμε το burger
+  // click outside
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (!open) return;
@@ -29,7 +29,7 @@ export default function Header({ locale, messages }: Props) {
     return () => document.removeEventListener("click", onDoc);
   }, [open]);
 
-  // Κλείσιμο όταν αλλάξει route
+  // close on route change
   useEffect(() => setOpen(false), [pathname]);
 
   const L = (p: string) => `/${locale}${p}`;
@@ -42,7 +42,7 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
-  // Γλώσσα: δείχνουμε ΜΟΝΟ την εναλλακτική
+  // language switch
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -75,7 +75,7 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE SWITCH (δεξιά στο header) */}
+        {/* LANGUAGE SWITCH (right) */}
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
           {langLabel}
         </Link>
@@ -116,7 +116,7 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
-          {/* Γλώσσα αφαιρέθηκε από το drawer */}
+          {/* η επιλογή γλώσσας έχει φύγει από εδώ */}
         </nav>
       </div>
 
@@ -128,11 +128,13 @@ export default function Header({ locale, messages }: Props) {
           z-index: 1100;
           background: #fff;
           border-bottom: 1px solid #eee;
+          /* Δηλώνουμε ύψος header ως CSS variable για χρήση στις σελίδες */
+          --hp-header-h: 64px;
         }
         .hp-inner {
-          height: 64px;
+          height: var(--hp-header-h);
           display: grid;
-          grid-template-columns: auto 1fr auto auto; /* brand | spacer | lang | burger (nav εμφανίζεται μόνο σε desktop) */
+          grid-template-columns: auto 1fr auto auto;
           align-items: center;
           gap: 12px;
           padding: 0 12px;
@@ -141,12 +143,13 @@ export default function Header({ locale, messages }: Props) {
         /* LOGO */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
         .hp-logo { display:block; height:48px; width:auto; object-fit:contain; }
+
         @media (min-width: 900px) {
+          .hp-header { --hp-header-h: 72px; }
           .hp-logo { height:56px; }
-          .hp-inner { height:72px; grid-template-columns: auto 1fr auto auto; }
         }
 
-        /* DESKTOP NAV */
+        /* NAV */
         .hp-navDesktop { display:none; gap:10px; justify-content:center; }
         .hp-link {
           text-decoration:none; color:#222;
@@ -155,18 +158,17 @@ export default function Header({ locale, messages }: Props) {
         .hp-link:hover { background:#f6f6f6; }
         .hp-active { color:#0e300e; }
 
-        /* LANGUAGE SWITCH PILL */
+        /* LANGUAGE SWITCH: λευκό φόντο, μαύρο περίγραμμα, στρογγυλεμένο */
         .hp-langSwitch {
           display:inline-flex; align-items:center; justify-content:center;
-          padding:6px 12px;
-          background:#111; color:#fff;
-          border-radius:9999px;
-          text-decoration:none; font-weight:700; line-height:1;
-          border:1px solid #111;
-          transition: transform .08s ease, opacity .15s ease, background .2s ease;
+          min-width: 44px; height: 32px; padding: 0 12px;
+          border: 2px solid #111; border-radius: 10px;
+          background: #fff; color:#111; font-weight: 800; letter-spacing: .02em;
+          text-decoration:none; line-height:1;
+          transition: background .2s ease, color .2s ease, transform .08s ease, opacity .15s ease;
           user-select:none;
         }
-        .hp-langSwitch:hover { opacity:.92; }
+        .hp-langSwitch:hover { background:#111; color:#fff; }
         .hp-langSwitch:active { transform: translateY(1px); }
 
         /* BURGER */
@@ -178,7 +180,7 @@ export default function Header({ locale, messages }: Props) {
 
         /* MOBILE DRAWER */
         .hp-mobileWrap {
-          position: fixed; inset: 72px 0 0 0;
+          position: fixed; inset: calc(var(--hp-header-h)) 0 0 0;
           z-index: 1099;
           background: rgba(0,0,0,.35);
           transform: translateY(-100%);
@@ -200,10 +202,9 @@ export default function Header({ locale, messages }: Props) {
         }
         .hp-mobileLink:hover { background:#f6f6f6; }
 
-        /* RESPONSIVE */
+        /* DESKTOP ONLY */
         @media (min-width: 900px) {
           .hp-navDesktop { display:inline-flex; }
-          /* Σε desktop: μετακινούμε τη nav στη μέση με CSS order μέσω grid? Δεν χρειάζεται, ήδη κεντραρισμένη. */
         }
       `}</style>
     </header>

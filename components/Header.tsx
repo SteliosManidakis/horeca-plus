@@ -196,6 +196,8 @@ export default function Header({ locale, messages }: Props) {
 
         @media (min-width: 900px) {
           .hp-navDesktop { display:inline-flex; }
+          .hp-burger { display: none; }   /* 👈 κρύβει το burger στο desktop */
+          .hp-mobileWrap { display: none !important; } /* ασφάλεια */
         }
       `}</style>
     </header>

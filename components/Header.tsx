@@ -150,7 +150,7 @@ export default function Header({ locale, messages }: Props) {
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
         .hp-logo { height: 42px; width: auto; object-fit: contain; }
         @media (max-width: 899px) {
-          .hp-logo { height: 48px; }
+          .hp-logo { height: 38px; }
         }
         @media (min-width: 900px) {
           .hp-header { --hp-header-h: 72px; }

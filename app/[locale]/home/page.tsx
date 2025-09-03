@@ -45,7 +45,7 @@ export default async function Page({
             lineHeight: 1.15,
             fontWeight: 700,
             letterSpacing: '0.02em',
-            color: '#222',
+            color: '#a37c40',
             fontFamily: 'Georgia, serif'
           }}
         >
@@ -61,7 +61,7 @@ export default async function Page({
             lineHeight: 1.15,
             fontWeight: 700,
             letterSpacing: '0.02em',
-            color: '#4476CF',
+            color: '#000000',
             fontFamily: 'Georgia, serif'
           }}
         >
@@ -79,8 +79,8 @@ export default async function Page({
             fontSize: 20,
             fontWeight: 700,
             borderRadius: 10,
-            backgroundColor: '#4476CF',
-            color: '#fff',
+            backgroundColor: '#a37c40',
+            color: '#000000',
             textDecoration: 'none',
             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
             transition: 'background 0.3s ease'
@@ -98,7 +98,7 @@ export default async function Page({
             lineHeight: 1.15,
             fontWeight: 700,
             letterSpacing: '0.02em',
-            color: '#4476CF',
+            color: '#000000',
             fontFamily: 'Georgia, serif'
           }}
         >

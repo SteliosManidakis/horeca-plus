@@ -6,11 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 type AppLocale = "el" | "en";
-
-type Props = {
-  locale: AppLocale;
-  messages: any; // περιέχει nav.*
-};
+type Props = { locale: AppLocale; messages: any };
 
 export default function Header({ locale, messages }: Props) {
   const t = messages?.nav ?? {};
@@ -18,22 +14,18 @@ export default function Header({ locale, messages }: Props) {
   const currentPath = pathname.replace(/^\/(el|en)/, "") || "/";
 
   const [open, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-  // κλείσιμο όταν κλικάρεις εκτός
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
-      if (!menuRef.current) return;
-      if (!menuRef.current.contains(e.target as Node)) setOpen(false);
+      if (!ref.current) return;
+      if (!ref.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("click", onDoc);
     return () => document.removeEventListener("click", onDoc);
   }, []);
 
-  // κλείσιμο όταν αλλάζει route
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  useEffect(() => setOpen(false), [pathname]);
 
   const L = (p: string) => `/${locale}${p}`;
   const items = [
@@ -43,51 +35,50 @@ export default function Header({ locale, messages }: Props) {
     { href: L("/casestudies"), label: t.casestudies ?? "Case Studies" },
     { href: L("/contact"), label: t.contact ?? "Contact" },
   ];
+
   const isActive = (href: string) => pathname === href;
 
   return (
-    <header className="header" role="banner">
-      <div className="inner container">
-        {/* brand */}
-        <Link href={L("/home")} className="brand" aria-label="HORECA Plus">
+    <header className="hp-header" role="banner">
+      <div className="hp-inner container">
+        {/* LOGO — σταθερό, δεν μικραίνει */}
+        <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
           <Image
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
-            width={132}
-            height={36}
-            className="logo"
+            width={220}
+            height={60}
             priority
+            className="hp-logo"
           />
-          {/* Αν ΔΕΝ θες καθόλου το κείμενο, σβήστο */}
-          <span className="brandText">HORECA&nbsp;Plus</span>
         </Link>
 
-        {/* desktop nav */}
-        <nav className="navDesktop" aria-label="Main">
+        {/* DESKTOP NAV */}
+        <nav className="hp-navDesktop" aria-label="Main">
           {items.map((it) => (
             <Link
               key={it.href}
               href={it.href}
-              className={`navLink ${isActive(it.href) ? "active" : ""}`}
+              className={`hp-link ${isActive(it.href) ? "hp-active" : ""}`}
             >
               {it.label}
             </Link>
           ))}
         </nav>
 
-        {/* language */}
-        <div className="lang">
-          <Link href={`/el${currentPath}`} aria-label="Greek">EL</Link>
+        {/* LANGUAGE */}
+        <div className="hp-lang">
+          <Link href={`/el${currentPath}`}>EL</Link>
           <span> / </span>
-          <Link href={`/en${currentPath}`} aria-label="English">EN</Link>
+          <Link href={`/en${currentPath}`}>EN</Link>
         </div>
 
-        {/* burger */}
+        {/* BURGER (mobile) */}
         <button
-          className="burger"
+          className="hp-burger"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          aria-controls="mobile-menu"
+          aria-controls="hp-mobile"
           onClick={() => setOpen((v) => !v)}
         >
           <span />
@@ -96,63 +87,59 @@ export default function Header({ locale, messages }: Props) {
         </button>
       </div>
 
-      {/* mobile drawer */}
-      <div
-        id="mobile-menu"
-        ref={menuRef}
-        className={`mobileWrap ${open ? "open" : ""}`}
-      >
-        <nav className="mobileNav" aria-label="Mobile">
+      {/* MOBILE MENU */}
+      <div id="hp-mobile" ref={ref} className={`hp-mobileWrap ${open ? "open" : ""}`}>
+        <nav className="hp-mobileNav" aria-label="Mobile">
           {items.map((it) => (
             <Link
               key={it.href}
               href={it.href}
-              className={`mobileLink ${isActive(it.href) ? "active" : ""}`}
+              className={`hp-mobileLink ${isActive(it.href) ? "hp-active" : ""}`}
             >
               {it.label}
             </Link>
           ))}
-          <div className="mobileLang">
-            <Link href={`/el${currentPath}`} aria-label="Greek">EL</Link>
+          <div className="hp-mobileLang">
+            <Link href={`/el${currentPath}`}>EL</Link>
             <span> / </span>
-            <Link href={`/en${currentPath}`} aria-label="English">EN</Link>
+            <Link href={`/en${currentPath}`}>EN</Link>
           </div>
         </nav>
       </div>
 
-      {/* styled-jsx: δεν χρειάζεται κανένα .module.css */}
+      {/* ---- STYLES (scoped, δεν επηρεάζονται από globals.css) ---- */}
       <style jsx>{`
-        .header { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #eee; }
-        .inner { height: 64px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px; padding: 0 8px; }
-        .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; line-height: 0; }
-        .logo { height: 36px; width: auto; }
-        .brandText { font-weight: 700; color: #111; letter-spacing: .2px; display: none; } /* κρυφό στο mobile */
+        .hp-header { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #eee; }
+        .hp-inner { height: 72px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px; padding: 0 12px; }
 
-        .navDesktop { display: none; justify-content: center; gap: 10px; }
-        .navLink { text-decoration: none; color: #222; padding: 10px 12px; border-radius: 8px; font-weight: 500; }
-        .navLink:hover { background: #f6f6f6; }
-        .active { color: #0e300e; }
+        .hp-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; line-height: 0; }
+        .hp-logo { width: 220px !important; height: auto !important; display: block; }      /* ✅ σταθερό */
+        .hp-brandText { font-weight: 700; color: #111; letter-spacing: .2px; display: none; } /* κρυφό στο mobile πάντα */
 
-        .lang { display: none; gap: 6px; align-items: center; }
+        .hp-navDesktop { display: none; gap: 10px; justify-content: center; }
+        .hp-link { text-decoration: none; color: #222; padding: 10px 12px; border-radius: 8px; font-weight: 500; }
+        .hp-link:hover { background: #f6f6f6; }
+        .hp-active { color: #0e300e; }
 
-        .burger { width: 42px; height: 42px; border: 0; background: transparent; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-        .burger span { width: 22px; height: 2px; background: #111; margin: 3px 0; display: block; transition: transform .2s ease; }
+        .hp-lang { display: none; gap: 6px; align-items: center; }
 
-        .mobileWrap { position: fixed; inset: 64px 0 0 0; background: rgba(0,0,0,.35); backdrop-filter: blur(1px);
-                      transform: translateY(-100%); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
-        .open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-        .mobileNav { background: #fff; border-top: 1px solid #eee; padding: 12px 12px 18px; display: grid; gap: 6px; }
-        .mobileLink { padding: 12px 8px; border-radius: 8px; text-decoration: none; color: #111; font-weight: 600; }
-        .mobileLink:hover { background: #f6f6f6; }
-        .mobileLang { margin-top: 6px; display: inline-flex; gap: 6px; align-items: center; color: #444; }
+        .hp-burger { width: 44px; height: 44px; border: 0; background: transparent; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+        .hp-burger span { width: 24px; height: 2px; background: #111; margin: 3px 0; display: block; }
 
-        /* ≥ 900px = desktop */
+        .hp-mobileWrap { position: fixed; inset: 72px 0 0 0; background: rgba(0,0,0,.35); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+        .hp-mobileWrap.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .hp-mobileNav { background: #fff; border-top: 1px solid #eee; padding: 12px 12px 18px; display: grid; gap: 6px; }
+        .hp-mobileLink { padding: 14px 8px; border-radius: 8px; text-decoration: none; color: #111; font-weight: 600; }
+        .hp-mobileLink:hover { background: #f6f6f6; }
+        .hp-mobileLang { margin-top: 6px; display: inline-flex; gap: 6px; align-items: center; color: #444; }
+
+        /* DESKTOP ONLY */
         @media (min-width: 900px){
-          .brandText{ display:inline; }      /* δείχνει το “HORECA Plus” μόνο σε desktop */
-          .navDesktop{ display:inline-flex; }
-          .lang{ display:inline-flex; }
-          .burger{ display:none; }           /* burger εξαφανίζεται */
-          .mobileWrap{ display:none; }
+          .hp-brandText{ display: none; }                         /* ❗️αν ΔΕΝ θες το κείμενο ποτέ, κράτα το hidden */
+          .hp-navDesktop{ display: inline-flex; }
+          .hp-lang{ display: inline-flex; }
+          .hp-burger{ display: none; }
+          .hp-mobileWrap{ display: none; }
         }
       `}</style>
     </header>

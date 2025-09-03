@@ -31,7 +31,7 @@ export default function ServicesPage(
       <section style={{ padding: '24px 0', marginBottom: 24 }}>
         <h1 style={{
           fontSize: 34, lineHeight: 1.2, fontWeight: 800,
-          letterSpacing: '0.01em', color: '#4476CF', fontFamily: 'Georgia, serif', margin: 0
+          letterSpacing: '0.01em', color: '#a37c40', fontFamily: 'Georgia, serif', margin: 0
         }}>
           {services.heroTitle}
         </h1>

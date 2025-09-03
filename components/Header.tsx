@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,7 +11,11 @@ type Props = { locale: AppLocale; messages: any };
 export default function Header({ locale, messages }: Props) {
   const t = messages?.nav ?? {};
   const pathname = usePathname() || "/";
-  const currentPath = pathname.replace(/^\/(el|en)/, "") || "/";
+
+  // αφαιρούμε το locale prefix
+  const currentPathRaw = pathname.replace(/^\/(el|en)/, "") || "/";
+  // ✅ αν είμαστε στη ρίζα (/el ή /en) στέλνουμε στο /home
+  const currentPath = currentPathRaw === "/" ? "/home" : currentPathRaw;
 
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -42,7 +47,7 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
-  // language switch: δείχνει ΜΟΝΟ την άλλη γλώσσα
+  // language switch – δείχνει μόνο την άλλη γλώσσα
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -52,13 +57,15 @@ export default function Header({ locale, messages }: Props) {
   return (
     <header className="hp-header" role="banner">
       <div className="hp-inner container">
-        {/* LOGO */}
+        {/* LOGO (next/image για να φύγει το ESLint warning) */}
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
-          <img
+          <Image
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
+            width={140}
+            height={56}
             className="hp-logo"
-            loading="eager"
+            priority
           />
         </Link>
 
@@ -75,7 +82,7 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE SWITCH (δεξιά) – τετράγωνο πλαίσιο, μαύρο περίγραμμα, στρογγυλεμένες γωνίες */}
+        {/* LANGUAGE SWITCH (δεξιά) – τετράγωνο πλαίσιο, μαύρο περίγραμμα, rounded */}
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
           {langLabel}
         </Link>
@@ -116,7 +123,7 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
-          {/* Η επιλογή γλώσσας έχει αφαιρεθεί από το drawer */}
+          {/* γλώσσα: εκτός drawer */}
         </nav>
       </div>
 
@@ -128,8 +135,7 @@ export default function Header({ locale, messages }: Props) {
           z-index: 1100;
           background: #fff;
           border-bottom: 1px solid #eee;
-          /* Εκθέτουμε το ύψος ως μεταβλητή για χρήση στη σελίδα */
-          --hp-header-h: 64px;
+          --hp-header-h: 64px; /* διαθέσιμο στις σελίδες */
         }
         .hp-inner {
           height: var(--hp-header-h);
@@ -142,11 +148,12 @@ export default function Header({ locale, messages }: Props) {
 
         /* LOGO */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo { display:block; height:48px; width:auto; object-fit:contain; }
-
+        .hp-logo { height: 56px; width: auto; object-fit: contain; }
+        @media (max-width: 899px) {
+          .hp-logo { height: 48px; }
+        }
         @media (min-width: 900px) {
           .hp-header { --hp-header-h: 72px; }
-          .hp-logo { height:56px; }
         }
 
         /* NAV */

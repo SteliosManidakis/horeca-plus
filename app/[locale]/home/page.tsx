@@ -1,203 +1,144 @@
-"use client";
+import Image from 'next/image'
+import en from 'messages/en.json'
+import el from 'messages/el.json'
+import Link from 'next/link'
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-
-type AppLocale = "el" | "en";
-type Props = { locale: AppLocale; messages: any };
-
-export default function Header({ locale, messages }: Props) {
-  const t = messages?.nav ?? {};
-  const pathname = usePathname() || "/";
-  const currentPathRaw = pathname.replace(/^\/(el|en)/, "") || "/";
-  // ✅ Αν είμαστε στη ρίζα (/en ή /el), στείλε μας στο /home
-  const currentPath = currentPathRaw === "/" ? "/home" : currentPathRaw;
-
-  const [open, setOpen] = useState(false);
-  const drawerRef = useRef<HTMLDivElement>(null);
-  const burgerRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    function onDoc(e: MouseEvent) {
-      if (!open) return;
-      const target = e.target as Node;
-      if (drawerRef.current?.contains(target)) return;
-      if (burgerRef.current?.contains(target)) return;
-      setOpen(false);
-    }
-    document.addEventListener("click", onDoc);
-    return () => document.removeEventListener("click", onDoc);
-  }, [open]);
-
-  useEffect(() => setOpen(false), [pathname]);
-
-  const L = (p: string) => `/${locale}${p}`;
-  const items = [
-    { href: L("/home"), label: t.home ?? "Home" },
-    { href: L("/about"), label: t.about ?? "About" },
-    { href: L("/services"), label: t.services ?? "Services" },
-    { href: L("/casestudies"), label: t.casestudies ?? "Case Studies" },
-    { href: L("/contact"), label: t.contact ?? "Contact" },
-  ];
-  const isActive = (href: string) => pathname === href;
-
-  // language switch – δείχνει μόνο την άλλη γλώσσα
-  const nextLocale: AppLocale = locale === "el" ? "en" : "el";
-  const langLabel = nextLocale.toUpperCase();
-  const langHref = `/${nextLocale}${currentPath}`;
-  const langAria =
-    nextLocale === "en" ? "Switch language to English" : "Αλλαγή γλώσσας σε Ελληνικά";
+export default async function Page({ params }: any) {
+  // params μπορεί να είναι είτε object είτε Promise<object> ανάλογα με το setup σου
+  const p = typeof params?.then === 'function' ? await params : params
+  const locale: 'el' | 'en' = p?.locale === 'el' ? 'el' : 'en'
+  const t = locale === 'el' ? el : en
 
   return (
-    <header className="hp-header" role="banner">
-      <div className="hp-inner container">
-        {/* LOGO */}
-        <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
-          <img
-            src="/images/home/hrc.jpg"
-            alt="HORECA Plus"
-            className="hp-logo"
-            loading="eager"
+    <main style={{ paddingTop: 'var(--hp-header-h, 72px)' }}>
+      {/* ΚΕΝΤΡΙΚΗ ΦΩΤΟ */}
+      <section style={{ textAlign: 'center', margin: '20px 0 40px' }}>
+        <div style={{
+          display:'inline-block',
+          position:'relative',
+          width:'min(92vw, 900px)',
+          aspectRatio:'16 / 9',
+          background:'#fff',
+          borderRadius:12,
+          overflow:'hidden'
+        }}>
+          <Image
+            src="/images/home/horecaplus1.jpg"
+            alt="Κεντρική εικόνα"
+            fill
+            style={{ objectFit: 'contain' }}
+            sizes="(max-width: 900px) 92vw, 900px"
+            priority
           />
-        </Link>
+        </div>
+      </section>
 
-        {/* DESKTOP NAV */}
-        <nav className="hp-navDesktop" aria-label="Main">
-          {items.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              className={`hp-link ${isActive(it.href) ? "hp-active" : ""}`}
-            >
-              {it.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* LANGUAGE SWITCH (δεξιά) */}
-        <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
-          {langLabel}
-        </Link>
-
-        {/* BURGER */}
-        <button
-          ref={burgerRef}
-          className="hp-burger"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="hp-mobile"
-          onClick={(e) => {
-            e.stopPropagation();
-            setOpen((v) => !v);
+      {/* TITLE */}
+      <section style={{ textAlign: 'center', margin: '0 0 24px' }}>
+        <h2
+          style={{
+            fontSize: 35,
+            lineHeight: 1.15,
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+            color: '#a37c40',
+            fontFamily: 'Georgia, serif'
           }}
         >
-          <svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true">
-            <rect x="0" y="1" width="26" height="2" rx="1"></rect>
-            <rect x="0" y="10" width="26" height="2" rx="1"></rect>
-            <rect x="0" y="19" width="26" height="2" rx="1"></rect>
-          </svg>
-        </button>
-      </div>
+          {t.nav.title}
+        </h2>
+      </section>
 
-      {/* MOBILE DRAWER */}
-      <div
-        id="hp-mobile"
-        ref={drawerRef}
-        className={`hp-mobileWrap ${open ? "open" : ""}`}
-      >
-        <nav className="hp-mobileNav" aria-label="Mobile">
-          {items.map((it) => (
-            <Link
-              key={it.href}
-              href={it.href}
-              className={`hp-mobileLink ${isActive(it.href) ? "hp-active" : ""}`}
-            >
-              {it.label}
-            </Link>
-          ))}
-          {/* γλώσσα: εκτός drawer */}
-        </nav>
-      </div>
+      {/* TITLE 2 */}
+      <section style={{ textAlign: 'center', margin: '0 0 32px' }}>
+        <h2
+          style={{
+            fontSize: 30,
+            lineHeight: 1.15,
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+            color: '#000000',
+            fontFamily: 'Georgia, serif'
+          }}
+        >
+          {t.nav.title2}
+        </h2>
+      </section>
 
-      {/* STYLES */}
-      <style jsx>{`
-        .hp-header {
-          position: sticky;
-          top: 0;
-          z-index: 1100;
-          background: #fff;
-          border-bottom: 1px solid #eee;
-          --hp-header-h: 64px;
-        }
-        .hp-inner {
-          height: var(--hp-header-h);
-          display: grid;
-          grid-template-columns: auto 1fr auto auto;
-          align-items: center;
-          gap: 12px;
-          padding: 0 12px;
-        }
+      {/* CTA */}
+      <section style={{ textAlign: 'center', marginBottom: '40px' }}>
+        <Link
+          href={`/${locale}/contact`}
+          style={{
+            display: 'inline-block',
+            padding: '12px 40px',
+            fontSize: 20,
+            fontWeight: 700,
+            borderRadius: 10,
+            backgroundColor: '#a37c40',
+            color: '#000000',
+            textDecoration: 'none',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+            transition: 'background 0.3s ease'
+          }}
+        >
+          {t.nav.cta}
+        </Link>
+      </section>
 
-        .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo { display:block; height:48px; width:auto; object-fit:contain; }
+      {/* TITLE 3 */}
+      <section style={{ textAlign: 'center', margin: '0 0 24px' }}>
+        <h2
+          style={{
+            fontSize: 30,
+            lineHeight: 1.15,
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+            color: '#000000',
+            fontFamily: 'Georgia, serif'
+          }}
+        >
+          {t.nav.title3}
+        </h2>
+      </section>
 
-        @media (min-width: 900px) {
-          .hp-header { --hp-header-h: 72px; }
-          .hp-logo { height:56px; }
-        }
+      {/* TITLE 4 */}
+      <section style={{ textAlign: 'center', margin: '0 0 32px' }}>
+        <h2
+          style={{
+            fontSize: 30,
+            lineHeight: 1.15,
+            fontWeight: 700,
+            letterSpacing: '0.02em',
+            color: '#a37c40',
+            fontFamily: 'Georgia, serif'
+          }}
+        >
+          {t.nav.title4}
+        </h2>
+      </section>
 
-        .hp-navDesktop { display:none; gap:10px; justify-content:center; }
-        .hp-link { text-decoration:none; color:#222; padding:10px 12px; border-radius:8px; font-weight:500; }
-        .hp-link:hover { background:#f6f6f6; }
-        .hp-active { color:#0e300e; }
-
-        /* Γλώσσα: τετράγωνο πλαίσιο, μαύρο περίγραμμα, rounded */
-        .hp-langSwitch {
-          display:inline-flex; align-items:center; justify-content:center;
-          min-width: 44px; height: 32px; padding: 0 12px;
-          border: 2px solid #111; border-radius: 10px;
-          background: #fff; color:#111; font-weight: 800; letter-spacing: .02em;
-          text-decoration:none; line-height:1;
-          transition: background .2s ease, color .2s ease, transform .08s ease, opacity .15s ease;
-          user-select:none;
-        }
-        .hp-langSwitch:hover { background:#111; color:#fff; }
-        .hp-langSwitch:active { transform: translateY(1px); }
-
-        .hp-burger {
-          width:44px; height:44px; border:0; background:transparent;
-          display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
-        }
-        .hp-burger svg rect { fill:#111; }
-
-        .hp-mobileWrap {
-          position: fixed; inset: calc(var(--hp-header-h)) 0 0 0;
-          z-index: 1099;
-          background: rgba(0,0,0,.35);
-          transform: translateY(-100%);
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity .2s ease, transform .2s ease;
-        }
-        .hp-mobileWrap.open {
-          transform: translateY(0);
-          opacity: 1;
-          pointer-events: auto;
-        }
-        .hp-mobileNav {
-          background:#fff; border-top:1px solid #eee;
-          padding:12px 12px 18px; display:grid; gap:6px;
-        }
-        .hp-mobileLink {
-          padding:14px 8px; border-radius:8px; text-decoration:none; color:#111; font-weight:600;
-        }
-        .hp-mobileLink:hover { background:#f6f6f6; }
-
-        @media (min-width: 900px) {
-          .hp-navDesktop { display:inline-flex; }
-        }
-      `}</style>
-    </header>
-  );
+      {/* ΜΕΓΑΛΗ ΦΩΤΟ */}
+      <section style={{ display: 'flex', justifyContent: 'center', margin: '0 0 40px' }}>
+        <div
+          style={{
+            width: 'min(92vw, 1000px)',
+            aspectRatio: '16 / 9',
+            position: 'relative',
+            borderRadius: 12,
+            overflow: 'hidden'
+          }}
+        >
+          <Image
+            src="/images/home/hero.jpg"
+            alt=""
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 1024px) 92vw, 1000px"
+            priority
+          />
+        </div>
+      </section>
+    </main>
+  )
 }

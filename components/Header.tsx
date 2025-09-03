@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -11,8 +10,8 @@ type Props = { locale: AppLocale; messages: any };
 export default function Header({ locale, messages }: Props) {
   const t = messages?.nav ?? {};
   const pathname = usePathname() || "/";
-
   const currentPathRaw = pathname.replace(/^\/(el|en)/, "") || "/";
+  // ✅ Αν είμαστε στη ρίζα (/en ή /el), στείλε μας στο /home
   const currentPath = currentPathRaw === "/" ? "/home" : currentPathRaw;
 
   const [open, setOpen] = useState(false);
@@ -43,6 +42,7 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
+  // language switch – δείχνει μόνο την άλλη γλώσσα
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -54,13 +54,11 @@ export default function Header({ locale, messages }: Props) {
       <div className="hp-inner container">
         {/* LOGO */}
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
-          <Image
+          <img
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
-            width={150}         /* μεγάλο intrinsic για καθαρότητα */
-            height={50}
-            className="hp-logo" /* θα το περιορίσουμε με max-height */
-            priority
+            className="hp-logo"
+            loading="eager"
           />
         </Link>
 
@@ -77,7 +75,7 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE SWITCH */}
+        {/* LANGUAGE SWITCH (δεξιά) */}
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
           {langLabel}
         </Link>
@@ -118,9 +116,11 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
+          {/* γλώσσα: εκτός drawer */}
         </nav>
       </div>
 
+      {/* STYLES */}
       <style jsx>{`
         .hp-header {
           position: sticky;
@@ -129,7 +129,6 @@ export default function Header({ locale, messages }: Props) {
           background: #fff;
           border-bottom: 1px solid #eee;
           --hp-header-h: 64px;
-          --hp-logo-max: 44px; /* mobile default */
         }
         .hp-inner {
           height: var(--hp-header-h);
@@ -140,27 +139,20 @@ export default function Header({ locale, messages }: Props) {
           padding: 0 12px;
         }
 
-        /* LOGO sizing: ποτέ fixed height -> μόνο max-height, για να μην παραμορφώνεται */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo {
-          display: block;
-          height: auto;
-          width: auto;
-          max-height: var(--hp-logo-max);
-          object-fit: contain;
-        }
+        .hp-logo { display:block; height:48px; width:auto; object-fit:contain; }
 
         @media (min-width: 900px) {
-          .hp-header { --hp-header-h: 72px; --hp-logo-max: 52px; }
+          .hp-header { --hp-header-h: 72px; }
+          .hp-logo { height:56px; }
         }
 
-        /* NAV */
         .hp-navDesktop { display:none; gap:10px; justify-content:center; }
         .hp-link { text-decoration:none; color:#222; padding:10px 12px; border-radius:8px; font-weight:500; }
         .hp-link:hover { background:#f6f6f6; }
         .hp-active { color:#0e300e; }
 
-        /* LANGUAGE */
+        /* Γλώσσα: τετράγωνο πλαίσιο, μαύρο περίγραμμα, rounded */
         .hp-langSwitch {
           display:inline-flex; align-items:center; justify-content:center;
           min-width: 44px; height: 32px; padding: 0 12px;
@@ -173,14 +165,12 @@ export default function Header({ locale, messages }: Props) {
         .hp-langSwitch:hover { background:#111; color:#fff; }
         .hp-langSwitch:active { transform: translateY(1px); }
 
-        /* BURGER */
         .hp-burger {
           width:44px; height:44px; border:0; background:transparent;
           display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
         }
         .hp-burger svg rect { fill:#111; }
 
-        /* MOBILE DRAWER */
         .hp-mobileWrap {
           position: fixed; inset: calc(var(--hp-header-h)) 0 0 0;
           z-index: 1099;

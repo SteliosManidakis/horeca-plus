@@ -38,6 +38,7 @@
 
 /* MEDIA CARD: προσθέτουμε ίδιο padding με τα .card για οπτική ισότητα */
 .mediaCard {
+  box-sizing: border-box;
   border: 5px solid #e5e5e5;
   border-radius: 16px;
   box-shadow: 0 3px 6px rgb(0, 0, 0);

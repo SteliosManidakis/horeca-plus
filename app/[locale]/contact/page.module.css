@@ -23,9 +23,9 @@
 
 /* Generic card look */
 .card {
-  border: 1px solid #000000;
+  border: 5px solid #e5e5e5;
   border-radius: 16px;
-  box-shadow: 0 1px 4px rgb(0, 0, 0);
+  box-shadow: 0 3px 6px rgb(0, 0, 0);
   background: #fff;
   padding: 16px;                 /* ← baseline padding για “στενότερη” οπτική */
 }
@@ -38,9 +38,9 @@
 
 /* MEDIA CARD: προσθέτουμε ίδιο padding με τα .card για οπτική ισότητα */
 .mediaCard {
-  border: 1px solid #e5e5e5;
+  border: 5px solid #e5e5e5;
   border-radius: 16px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 3px 6px rgb(0, 0, 0);
   background: #fff;
   overflow: hidden;
   height: 100%;

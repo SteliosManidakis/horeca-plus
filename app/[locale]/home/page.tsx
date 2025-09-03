@@ -27,7 +27,7 @@ export default async function Page({
           overflow:'hidden'
         }}>
           <Image
-            src="/images/home/horecaplus1.svg"
+            src="/images/home/horecaplus1.jpg"
             alt="Κεντρική εικόνα"
             fill
             style={{ objectFit: 'contain' }}

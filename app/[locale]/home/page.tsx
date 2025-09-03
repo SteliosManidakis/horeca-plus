@@ -69,10 +69,9 @@ export default async function Page({
         </h2>
       </section>
 
-      {/* ΚΟΥΜΠΙ ΚΑΤΩ ΑΠΟ ΤΑ ΚΕΙΜΕΝΑ */}
+      {/* ΚΟΥΜΠΙ ΚΑΤΩ ΑΠΟ ΤΑ ΚΕΙΜΕΝΑ           <Link href={`/${locale}/contact`}>{t.contact}</Link>          */}
       <section style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <Link
-          href="/contact"
+        <Link href={'/${locale}/contact'}
           style={{
             display: 'inline-block',
             padding: '12px 40px',

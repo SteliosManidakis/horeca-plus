@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import styles from "./Header.module.css";
+  import Image from "next/image";
+  import Link from "next/link";
+  import { usePathname } from "next/navigation";
+  import { useEffect, useRef, useState } from "react";  
+  import styles from "./Header.module.css";           
 
-type Locale = "el" | "en";
+  type Locale = "el" | "en";   
 
 type Props = {
   locale: Locale;

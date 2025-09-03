@@ -148,7 +148,7 @@ export default function Header({ locale, messages }: Props) {
 
         /* LOGO */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo { height: 48px; width: auto; object-fit: contain; }
+        .hp-logo { height: 42px; width: auto; object-fit: contain; }
         @media (max-width: 899px) {
           .hp-logo { height: 48px; }
         }

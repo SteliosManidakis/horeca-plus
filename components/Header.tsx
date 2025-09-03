@@ -12,16 +12,13 @@ export default function Header({ locale, messages }: Props) {
   const t = messages?.nav ?? {};
   const pathname = usePathname() || "/";
 
-  // αφαιρούμε το locale prefix
   const currentPathRaw = pathname.replace(/^\/(el|en)/, "") || "/";
-  // ✅ αν είμαστε στη ρίζα (/el ή /en) στέλνουμε στο /home
   const currentPath = currentPathRaw === "/" ? "/home" : currentPathRaw;
 
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
-  // click outside (όχι όταν πατάμε burger)
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (!open) return;
@@ -34,7 +31,6 @@ export default function Header({ locale, messages }: Props) {
     return () => document.removeEventListener("click", onDoc);
   }, [open]);
 
-  // close on route change
   useEffect(() => setOpen(false), [pathname]);
 
   const L = (p: string) => `/${locale}${p}`;
@@ -47,7 +43,6 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
-  // language switch – δείχνει μόνο την άλλη γλώσσα
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -57,14 +52,14 @@ export default function Header({ locale, messages }: Props) {
   return (
     <header className="hp-header" role="banner">
       <div className="hp-inner container">
-        {/* LOGO (next/image για να φύγει το ESLint warning) */}
+        {/* LOGO */}
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
           <Image
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
-            width={140}
-            height={56}
-            className="hp-logo"
+            width={200}         /* μεγάλο intrinsic για καθαρότητα */
+            height={80}
+            className="hp-logo" /* θα το περιορίσουμε με max-height */
             priority
           />
         </Link>
@@ -82,7 +77,7 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE SWITCH (δεξιά) – τετράγωνο πλαίσιο, μαύρο περίγραμμα, rounded */}
+        {/* LANGUAGE SWITCH */}
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
           {langLabel}
         </Link>
@@ -123,11 +118,9 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
-          {/* γλώσσα: εκτός drawer */}
         </nav>
       </div>
 
-      {/* STYLES */}
       <style jsx>{`
         .hp-header {
           position: sticky;
@@ -135,7 +128,8 @@ export default function Header({ locale, messages }: Props) {
           z-index: 1100;
           background: #fff;
           border-bottom: 1px solid #eee;
-          --hp-header-h: 64px; /* διαθέσιμο στις σελίδες */
+          --hp-header-h: 64px;
+          --hp-logo-max: 44px; /* mobile default */
         }
         .hp-inner {
           height: var(--hp-header-h);
@@ -146,26 +140,27 @@ export default function Header({ locale, messages }: Props) {
           padding: 0 12px;
         }
 
-        /* LOGO */
+        /* LOGO sizing: ποτέ fixed height -> μόνο max-height, για να μην παραμορφώνεται */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo { height: 20px; width: auto; object-fit: contain; }
-        @media (max-width: 899px) {
-          .hp-logo { height: 38px; }
+        .hp-logo {
+          display: block;
+          height: auto;
+          width: auto;
+          max-height: var(--hp-logo-max);
+          object-fit: contain;
         }
+
         @media (min-width: 900px) {
-          .hp-header { --hp-header-h: 72px; }
+          .hp-header { --hp-header-h: 72px; --hp-logo-max: 52px; }
         }
 
         /* NAV */
         .hp-navDesktop { display:none; gap:10px; justify-content:center; }
-        .hp-link {
-          text-decoration:none; color:#222;
-          padding:10px 12px; border-radius:8px; font-weight:500;
-        }
+        .hp-link { text-decoration:none; color:#222; padding:10px 12px; border-radius:8px; font-weight:500; }
         .hp-link:hover { background:#f6f6f6; }
         .hp-active { color:#0e300e; }
 
-        /* LANGUAGE – τετράγωνο πλαίσιο με στρογγυλεμένες γωνίες */
+        /* LANGUAGE */
         .hp-langSwitch {
           display:inline-flex; align-items:center; justify-content:center;
           min-width: 44px; height: 32px; padding: 0 12px;
@@ -209,7 +204,6 @@ export default function Header({ locale, messages }: Props) {
         }
         .hp-mobileLink:hover { background:#f6f6f6; }
 
-        /* Desktop only */
         @media (min-width: 900px) {
           .hp-navDesktop { display:inline-flex; }
         }

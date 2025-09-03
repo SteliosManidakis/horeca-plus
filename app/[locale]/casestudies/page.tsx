@@ -7,7 +7,7 @@ export default async function Page({ params }: any) {
   const p = typeof params?.then === "function" ? await params : params;
   const locale: "el" | "en" = p?.locale === "el" ? "el" : "en";
 
-  const title = locale === "el" ? "Μελέτες Περίπτωσης" : "Case Studies";
+  const title = locale === "el" ? "Case Studies" : "Case Studies";
   const desc =
     locale === "el"
       ? "Η σελίδα είναι υπό κατασκευή."

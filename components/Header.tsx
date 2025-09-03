@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -28,6 +27,7 @@ export default function Header({ locale, messages }: Props) {
   useEffect(() => setOpen(false), [pathname]);
 
   const L = (p: string) => `/${locale}${p}`;
+
   const items = [
     { href: L("/home"), label: t.home ?? "Home" },
     { href: L("/about"), label: t.about ?? "About" },
@@ -41,15 +41,13 @@ export default function Header({ locale, messages }: Props) {
   return (
     <header className="hp-header" role="banner">
       <div className="hp-inner container">
-        {/* LOGO — σταθερό, δεν μικραίνει */}
+        {/* LOGO: σταθερό πλάτος, ΠΑΝΤΑ σωστή αναλογία */}
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
-          <Image
+          <img
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
-            width={220}
-            height={60}
-            priority
             className="hp-logo"
+            loading="eager"
           />
         </Link>
 
@@ -73,7 +71,7 @@ export default function Header({ locale, messages }: Props) {
           <Link href={`/en${currentPath}`}>EN</Link>
         </div>
 
-        {/* BURGER (mobile) */}
+        {/* BURGER (SVG, πάντα καθαρό) */}
         <button
           className="hp-burger"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -81,9 +79,11 @@ export default function Header({ locale, messages }: Props) {
           aria-controls="hp-mobile"
           onClick={() => setOpen((v) => !v)}
         >
-          <span />
-          <span />
-          <span />
+          <svg width="26" height="22" viewBox="0 0 26 22" aria-hidden="true">
+            <rect x="0" y="1" width="26" height="2" rx="1"></rect>
+            <rect x="0" y="10" width="26" height="2" rx="1"></rect>
+            <rect x="0" y="19" width="26" height="2" rx="1"></rect>
+          </svg>
         </button>
       </div>
 
@@ -107,39 +107,67 @@ export default function Header({ locale, messages }: Props) {
         </nav>
       </div>
 
-      {/* ---- STYLES (scoped, δεν επηρεάζονται από globals.css) ---- */}
+      {/* STYLES (scoped) */}
       <style jsx>{`
-        .hp-header { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #eee; }
-        .hp-inner { height: 72px; display: grid; grid-template-columns: auto 1fr auto auto; align-items: center; gap: 12px; padding: 0 12px; }
+        .hp-header {
+          position: sticky; top: 0; z-index: 1100;
+          background: #fff; border-bottom: 1px solid #eee;
+        }
+        .hp-inner {
+          height: 72px;
+          display: grid;
+          grid-template-columns: auto 1fr auto auto;
+          align-items: center;
+          gap: 12px;
+          padding: 0 12px;
+        }
 
-        .hp-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; line-height: 0; }
-        .hp-logo { width: 220px !important; height: auto !important; display: block; }      /* ✅ σταθερό */
-        .hp-brandText { font-weight: 700; color: #111; letter-spacing: .2px; display: none; } /* κρυφό στο mobile πάντα */
+        /* LOGO */
+        .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
+        .hp-logo {
+          display:block;
+          width: 180px;      /* default για κινητό */
+          height: auto;
+        }
+        @media (min-width: 900px) {
+          .hp-logo { width: 220px; }  /* desktop */
+        }
 
-        .hp-navDesktop { display: none; gap: 10px; justify-content: center; }
-        .hp-link { text-decoration: none; color: #222; padding: 10px 12px; border-radius: 8px; font-weight: 500; }
-        .hp-link:hover { background: #f6f6f6; }
-        .hp-active { color: #0e300e; }
+        /* DESKTOP NAV */
+        .hp-navDesktop { display:none; gap:10px; justify-content:center; }
+        .hp-link { text-decoration:none; color:#222; padding:10px 12px; border-radius:8px; font-weight:500; }
+        .hp-link:hover { background:#f6f6f6; }
+        .hp-active { color:#0e300e; }
 
-        .hp-lang { display: none; gap: 6px; align-items: center; }
+        .hp-lang { display:none; gap:6px; align-items:center; }
 
-        .hp-burger { width: 44px; height: 44px; border: 0; background: transparent; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-        .hp-burger span { width: 24px; height: 2px; background: #111; margin: 3px 0; display: block; }
+        /* BURGER */
+        .hp-burger {
+          width:44px; height:44px; border:0; background:transparent;
+          display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
+        }
+        .hp-burger svg rect { fill:#111; }
 
-        .hp-mobileWrap { position: fixed; inset: 72px 0 0 0; background: rgba(0,0,0,.35); transform: translateY(-100%); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+        /* MOBILE DRAWER */
+        .hp-mobileWrap {
+          position: fixed; inset: 72px 0 0 0;
+          z-index: 1099; /* πάνω από περιεχόμενο */
+          background: rgba(0,0,0,.35);
+          transform: translateY(-100%); opacity: 0; pointer-events: none;
+          transition: opacity .2s ease, transform .2s ease;
+        }
         .hp-mobileWrap.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-        .hp-mobileNav { background: #fff; border-top: 1px solid #eee; padding: 12px 12px 18px; display: grid; gap: 6px; }
-        .hp-mobileLink { padding: 14px 8px; border-radius: 8px; text-decoration: none; color: #111; font-weight: 600; }
-        .hp-mobileLink:hover { background: #f6f6f6; }
-        .hp-mobileLang { margin-top: 6px; display: inline-flex; gap: 6px; align-items: center; color: #444; }
+        .hp-mobileNav { background:#fff; border-top:1px solid #eee; padding:12px 12px 18px; display:grid; gap:6px; }
+        .hp-mobileLink { padding:14px 8px; border-radius:8px; text-decoration:none; color:#111; font-weight:600; }
+        .hp-mobileLink:hover { background:#f6f6f6; }
+        .hp-mobileLang { margin-top:6px; display:inline-flex; gap:6px; align-items:center; color:#444; }
 
-        /* DESKTOP ONLY */
-        @media (min-width: 900px){
-          .hp-brandText{ display: none; }                         /* ❗️αν ΔΕΝ θες το κείμενο ποτέ, κράτα το hidden */
-          .hp-navDesktop{ display: inline-flex; }
-          .hp-lang{ display: inline-flex; }
-          .hp-burger{ display: none; }
-          .hp-mobileWrap{ display: none; }
+        /* DESKTOP */
+        @media (min-width: 900px) {
+          .hp-navDesktop { display: inline-flex; }
+          .hp-lang { display: inline-flex; }
+          .hp-burger { display: none; }
+          .hp-mobileWrap { display: none; }
         }
       `}</style>
     </header>

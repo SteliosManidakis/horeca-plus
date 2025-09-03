@@ -98,7 +98,7 @@ export default async function Page({
         </div>
 
         <h2 style={{
-          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '##a37c40',
+          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#a37c40',
           fontFamily: 'Georgia, serif', marginTop: 0, marginBottom: 8
         }}>
           {t.about.memberName1}

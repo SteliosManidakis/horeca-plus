@@ -114,7 +114,7 @@ export default function ServicesPage(
           }}>
             {cat.items.map(svc => (
               <article key={svc.id} style={{
-                border: '1px solid #eee',
+                border: '1px solid #000000ff',
                 borderRadius: 12,
                 padding: 16,
                 boxShadow: '0 4px 12px #4476CF(0, 0, 0, 1)',

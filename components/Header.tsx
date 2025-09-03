@@ -16,7 +16,7 @@ export default function Header({ locale, messages }: Props) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
-  // Κλείσιμο με click έξω, αλλά ΜΗΝ κλείνεις όταν πατάμε το burger
+  // Κλείσιμο με click έξω, αλλά όχι όταν πατάμε το burger
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (!open) return;
@@ -42,10 +42,17 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
+  // Γλώσσα: δείχνουμε ΜΟΝΟ την εναλλακτική
+  const nextLocale: AppLocale = locale === "el" ? "en" : "el";
+  const langLabel = nextLocale.toUpperCase();
+  const langHref = `/${nextLocale}${currentPath}`;
+  const langAria =
+    nextLocale === "en" ? "Switch language to English" : "Αλλαγή γλώσσας σε Ελληνικά";
+
   return (
     <header className="hp-header" role="banner">
       <div className="hp-inner container">
-        {/* LOGO: ύψος κλειδωμένο, ποτέ δεν ξεπερνά το header */}
+        {/* LOGO */}
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
           <img
             src="/images/home/hrc.jpg"
@@ -68,12 +75,10 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE */}
-        <div className="hp-lang">
-          <Link href={`/el${currentPath}`}>EL</Link>
-          <span> / </span>
-          <Link href={`/en${currentPath}`}>EN</Link>
-        </div>
+        {/* LANGUAGE SWITCH (δεξιά στο header) */}
+        <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
+          {langLabel}
+        </Link>
 
         {/* BURGER */}
         <button
@@ -83,7 +88,7 @@ export default function Header({ locale, messages }: Props) {
           aria-expanded={open}
           aria-controls="hp-mobile"
           onClick={(e) => {
-            e.stopPropagation(); // μην πιάσει το click-outside
+            e.stopPropagation();
             setOpen((v) => !v);
           }}
         >
@@ -111,60 +116,69 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
-          <div className="hp-mobileLang">
-            <Link href={`/el${currentPath}`}>EL</Link>
-            <span> / </span>
-            <Link href={`/en${currentPath}`}>EN</Link>
-          </div>
+          {/* Γλώσσα αφαιρέθηκε από το drawer */}
         </nav>
       </div>
 
       {/* STYLES */}
       <style jsx>{`
         .hp-header {
-          position: sticky; top: 0; z-index: 1100;
-          background: #fff; border-bottom: 1px solid #eee;
+          position: sticky;
+          top: 0;
+          z-index: 1100;
+          background: #fff;
+          border-bottom: 1px solid #eee;
         }
         .hp-inner {
-          height: 64px;                         /* ύψος header */
+          height: 64px;
           display: grid;
-          grid-template-columns: auto 1fr auto auto;
+          grid-template-columns: auto 1fr auto auto; /* brand | spacer | lang | burger (nav εμφανίζεται μόνο σε desktop) */
           align-items: center;
           gap: 12px;
           padding: 0 12px;
         }
 
-        /* LOGO — ποτέ δεν παραμορφώνεται ούτε ξεπερνά το header */
+        /* LOGO */
         .hp-brand { display:inline-flex; align-items:center; text-decoration:none; line-height:0; }
-        .hp-logo {
-          display: block;
-          height: 48px;     /* <= ΚΥΡΙΟ: ύψος λογότυπου */
-          width: auto;      /* κρατά αναλογία */
-          object-fit: contain;
-        }
+        .hp-logo { display:block; height:48px; width:auto; object-fit:contain; }
         @media (min-width: 900px) {
-          .hp-logo { height: 56px; }  /* λίγο μεγαλύτερο στο desktop */
-          .hp-inner { height: 72px; } /* και header λίγο ψηλότερο */
+          .hp-logo { height:56px; }
+          .hp-inner { height:72px; grid-template-columns: auto 1fr auto auto; }
         }
 
         /* DESKTOP NAV */
-        .hp-navDesktop { display: none; gap: 10px; justify-content: center; }
-        .hp-link { text-decoration: none; color: #222; padding: 10px 12px; border-radius: 8px; font-weight: 500; }
-        .hp-link:hover { background: #f6f6f6; }
-        .hp-active { color: #0e300e; }
+        .hp-navDesktop { display:none; gap:10px; justify-content:center; }
+        .hp-link {
+          text-decoration:none; color:#222;
+          padding:10px 12px; border-radius:8px; font-weight:500;
+        }
+        .hp-link:hover { background:#f6f6f6; }
+        .hp-active { color:#0e300e; }
 
-        .hp-lang { display: none; gap: 6px; align-items: center; }
+        /* LANGUAGE SWITCH PILL */
+        .hp-langSwitch {
+          display:inline-flex; align-items:center; justify-content:center;
+          padding:6px 12px;
+          background:#111; color:#fff;
+          border-radius:9999px;
+          text-decoration:none; font-weight:700; line-height:1;
+          border:1px solid #111;
+          transition: transform .08s ease, opacity .15s ease, background .2s ease;
+          user-select:none;
+        }
+        .hp-langSwitch:hover { opacity:.92; }
+        .hp-langSwitch:active { transform: translateY(1px); }
 
         /* BURGER */
         .hp-burger {
-          width: 44px; height: 44px; border: 0; background: transparent;
-          display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+          width:44px; height:44px; border:0; background:transparent;
+          display:inline-flex; align-items:center; justify-content:center; cursor:pointer;
         }
-        .hp-burger svg rect { fill: #111; }
+        .hp-burger svg rect { fill:#111; }
 
         /* MOBILE DRAWER */
         .hp-mobileWrap {
-          position: fixed; inset: 72px 0 0 0;   /* κάθεται κάτω από το header */
+          position: fixed; inset: 72px 0 0 0;
           z-index: 1099;
           background: rgba(0,0,0,.35);
           transform: translateY(-100%);
@@ -178,21 +192,18 @@ export default function Header({ locale, messages }: Props) {
           pointer-events: auto;
         }
         .hp-mobileNav {
-          background: #fff; border-top: 1px solid #eee;
-          padding: 12px 12px 18px; display: grid; gap: 6px;
+          background:#fff; border-top:1px solid #eee;
+          padding:12px 12px 18px; display:grid; gap:6px;
         }
         .hp-mobileLink {
-          padding: 14px 8px; border-radius: 8px; text-decoration: none; color: #111; font-weight: 600;
+          padding:14px 8px; border-radius:8px; text-decoration:none; color:#111; font-weight:600;
         }
-        .hp-mobileLink:hover { background: #f6f6f6; }
-        .hp-mobileLang { margin-top: 6px; display: inline-flex; gap: 6px; align-items: center; color: #444; }
+        .hp-mobileLink:hover { background:#f6f6f6; }
 
-        /* DESKTOP */
+        /* RESPONSIVE */
         @media (min-width: 900px) {
-          .hp-navDesktop { display: inline-flex; }
-          .hp-lang { display: inline-flex; }
-          .hp-burger { display: none; }
-          .hp-mobileWrap { display: none; }
+          .hp-navDesktop { display:inline-flex; }
+          /* Σε desktop: μετακινούμε τη nav στη μέση με CSS order μέσω grid? Δεν χρειάζεται, ήδη κεντραρισμένη. */
         }
       `}</style>
     </header>

@@ -3,12 +3,12 @@ import en from 'messages/en.json'
 import el from 'messages/el.json'
 import Link from 'next/link'
 
-export default function Page({
+export default async function Page({
   params,
 }: {
-  params: { locale: 'el' | 'en' }
+  params: Promise<{ locale: 'el' | 'en' }>
 }) {
-  const { locale } = params
+  const { locale } = await params
   const t = locale === 'el' ? el : en
 
   return (

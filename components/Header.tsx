@@ -16,7 +16,7 @@ export default function Header({ locale, messages }: Props) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
-  // click outside
+  // click outside (όχι όταν πατάμε burger)
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (!open) return;
@@ -42,7 +42,7 @@ export default function Header({ locale, messages }: Props) {
   ];
   const isActive = (href: string) => pathname === href;
 
-  // language switch
+  // language switch: δείχνει ΜΟΝΟ την άλλη γλώσσα
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -75,7 +75,7 @@ export default function Header({ locale, messages }: Props) {
           ))}
         </nav>
 
-        {/* LANGUAGE SWITCH (right) */}
+        {/* LANGUAGE SWITCH (δεξιά) – τετράγωνο πλαίσιο, μαύρο περίγραμμα, στρογγυλεμένες γωνίες */}
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
           {langLabel}
         </Link>
@@ -116,7 +116,7 @@ export default function Header({ locale, messages }: Props) {
               {it.label}
             </Link>
           ))}
-          {/* η επιλογή γλώσσας έχει φύγει από εδώ */}
+          {/* Η επιλογή γλώσσας έχει αφαιρεθεί από το drawer */}
         </nav>
       </div>
 
@@ -128,7 +128,7 @@ export default function Header({ locale, messages }: Props) {
           z-index: 1100;
           background: #fff;
           border-bottom: 1px solid #eee;
-          /* Δηλώνουμε ύψος header ως CSS variable για χρήση στις σελίδες */
+          /* Εκθέτουμε το ύψος ως μεταβλητή για χρήση στη σελίδα */
           --hp-header-h: 64px;
         }
         .hp-inner {
@@ -158,7 +158,7 @@ export default function Header({ locale, messages }: Props) {
         .hp-link:hover { background:#f6f6f6; }
         .hp-active { color:#0e300e; }
 
-        /* LANGUAGE SWITCH: λευκό φόντο, μαύρο περίγραμμα, στρογγυλεμένο */
+        /* LANGUAGE – τετράγωνο πλαίσιο με στρογγυλεμένες γωνίες */
         .hp-langSwitch {
           display:inline-flex; align-items:center; justify-content:center;
           min-width: 44px; height: 32px; padding: 0 12px;
@@ -202,7 +202,7 @@ export default function Header({ locale, messages }: Props) {
         }
         .hp-mobileLink:hover { background:#f6f6f6; }
 
-        /* DESKTOP ONLY */
+        /* Desktop only */
         @media (min-width: 900px) {
           .hp-navDesktop { display:inline-flex; }
         }

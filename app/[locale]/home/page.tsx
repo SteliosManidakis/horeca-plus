@@ -3,20 +3,18 @@ import en from 'messages/en.json'
 import el from 'messages/el.json'
 import Link from 'next/link'
 
-import Newsletterform from 'components/Newsletterform'
-
-export default async function Page({
+export default function Page({
   params,
 }: {
-  params: Promise<{ locale: 'el' | 'en' }>
+  params: { locale: 'el' | 'en' }
 }) {
-  const { locale } = await params
+  const { locale } = params
   const t = locale === 'el' ? el : en
 
   return (
-    <>
-      {/* ΝΕΟ SECTION ΜΕ ΦΩΤΟΓΡΑΦΙΑ */}
-      <section style={{ textAlign: 'center', marginTop: '-70px', marginBottom: '40px' }}>
+    <main style={{ paddingTop: 'var(--hp-header-h, 72px)' }}>
+      {/* ΚΕΝΤΡΙΚΗ ΦΩΤΟ */}
+      <section style={{ textAlign: 'center', margin: '20px 0 40px' }}>
         <div style={{
           display:'inline-block',
           position:'relative',
@@ -37,8 +35,8 @@ export default async function Page({
         </div>
       </section>
 
-      {/* ΚΕΝΤΡΑΡΙΣΜΕΝΟ TITLE */}
-      <section style={{ textAlign: 'center', marginTop: '-40px', marginBottom: '40px' }}>
+      {/* TITLE */}
+      <section style={{ textAlign: 'center', margin: '0 0 24px' }}>
         <h2
           style={{
             fontSize: 35,
@@ -53,8 +51,8 @@ export default async function Page({
         </h2>
       </section>
 
-      {/* ΚΕΝΤΡΑΡΙΣΜΕΝΟ TITLE 2*/}
-      <section style={{ textAlign: 'center', marginTop: '-25px', marginBottom: '40px' }}>
+      {/* TITLE 2 */}
+      <section style={{ textAlign: 'center', margin: '0 0 32px' }}>
         <h2
           style={{
             fontSize: 30,
@@ -69,9 +67,10 @@ export default async function Page({
         </h2>
       </section>
 
-      {/* ΚΟΥΜΠΙ ΚΑΤΩ ΑΠΟ ΤΑ ΚΕΙΜΕΝΑ           <Link href={`/${locale}/contact`}>{t.contact}</Link>          */}
+      {/* CTA */}
       <section style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <Link href={'/${locale}/contact'}
+        <Link
+          href={`/${locale}/contact`}
           style={{
             display: 'inline-block',
             padding: '12px 40px',
@@ -89,8 +88,8 @@ export default async function Page({
         </Link>
       </section>
 
-      {/* ΚΕΝΤΡΑΡΙΣΜΕΝΟ TITLE 3*/}
-      <section style={{ textAlign: 'center', marginTop: '0px', marginBottom: '40px' }}>
+      {/* TITLE 3 */}
+      <section style={{ textAlign: 'center', margin: '0 0 24px' }}>
         <h2
           style={{
             fontSize: 30,
@@ -105,8 +104,8 @@ export default async function Page({
         </h2>
       </section>
 
-      {/* ΚΕΝΤΡΑΡΙΣΜΕΝΟ TITLE 4*/}
-      <section style={{ textAlign: 'center', marginTop: '-25px', marginBottom: '40px' }}>
+      {/* TITLE 4 */}
+      <section style={{ textAlign: 'center', margin: '0 0 32px' }}>
         <h2
           style={{
             fontSize: 30,
@@ -121,7 +120,7 @@ export default async function Page({
         </h2>
       </section>
 
-      {/* ΜΕΓΑΛΥΤΕΡΗ ΚΕΝΤΡΑΡΙΣΜΕΝΗ ΦΩΤΟ */}
+      {/* ΜΕΓΑΛΗ ΦΩΤΟ */}
       <section style={{ display: 'flex', justifyContent: 'center', margin: '0 0 40px' }}>
         <div
           style={{
@@ -142,6 +141,6 @@ export default async function Page({
           />
         </div>
       </section>
-    </>
+    </main>
   )
 }

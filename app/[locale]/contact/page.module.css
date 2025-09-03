@@ -21,7 +21,20 @@
   .row { grid-template-columns: 1fr 1fr; gap: 28px; }
 }
 
-/* Generic card look */
+/* Mobile: στοίχιση των καρτών στο κέντρο */
+@media (max-width: 959px) {
+  .row {
+    justify-items: center;   /* κεντράρει τις κάρτες στο grid */
+  }
+
+  .card,
+  .mediaCard {
+    width: 100%;
+    max-width: 500px;        /* προσαρμοσμένο πλάτος για όμορφη εμφάνιση */
+  }
+}
+
+/* Generic card look λλλλλλλλλλλλλλλλλλλλλλλ */
 .card {
   border: 5px solid #e5e5e5;
   border-radius: 16px;

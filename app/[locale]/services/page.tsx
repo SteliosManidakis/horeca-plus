@@ -68,7 +68,7 @@ export default function ServicesPage(
                 padding: '8px 12px',
                 borderRadius: 8,
                 textDecoration: 'none',
-                background: '#4476CF',
+                background: '#a37c40',
                 color: '#333',
                 fontFamily: 'Verdana, sans-serif',
                 fontSize: 14
@@ -96,7 +96,7 @@ export default function ServicesPage(
           <header style={{ marginBottom: 12 }}>
             <h2 style={{
               fontSize: 26, lineHeight: 1.25, fontWeight: 700,
-              color: '#2355acff', fontFamily: 'Georgia, serif', margin: '0 0 6px 0'
+              color: '#a37c40', fontFamily: 'Georgia, serif', margin: '0 0 6px 0'
             }}>
               {cat.title}
             </h2>

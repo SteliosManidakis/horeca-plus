@@ -58,7 +58,7 @@ export default function Header({ locale, messages }: Props) {
             src="/images/home/hrc.jpg"
             alt="HORECA Plus"
             width={200}         /* μεγάλο intrinsic για καθαρότητα */
-            height={80}
+            height={50}
             className="hp-logo" /* θα το περιορίσουμε με max-height */
             priority
           />

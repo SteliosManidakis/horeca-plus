@@ -17,7 +17,7 @@ export default async function Page({
       <section style={{ textAlign: 'left', marginTop: '0px', marginBottom: '40px' }}>
         <h2 style={{
           fontSize: 35, lineHeight: 1.15, fontWeight: 700, letterSpacing: '0.02em',
-          color: '#4476CF', fontFamily: 'Georgia, serif'
+          color: '#a37c40', fontFamily: 'Georgia, serif'
         }}>
           {t.about.title}
         </h2>
@@ -59,7 +59,7 @@ export default async function Page({
         </div>
 
         <h2 style={{
-          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#1a499bff',
+          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#a37c40',
           fontFamily: 'Georgia, serif', marginTop: 0, marginBottom: 8
         }}>
           {t.about.memberName}
@@ -98,7 +98,7 @@ export default async function Page({
         </div>
 
         <h2 style={{
-          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#1a499bff',
+          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '##a37c40',
           fontFamily: 'Georgia, serif', marginTop: 0, marginBottom: 8
         }}>
           {t.about.memberName1}

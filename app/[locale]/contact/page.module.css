@@ -34,6 +34,18 @@
   }
 }
 
+@media (max-width: 959px) {
+  .row {
+    justify-content: center; /* κεντράρει το grid */
+  }
+
+  .card,
+  .mediaCard {
+    width: 100%;
+    max-width: 420px;        /* όλες έχουν το ίδιο "κουτί" */
+  }
+}
+
 /* Generic card look λλλλλλλλλλλλλλλλλλλλλλλ */
 .card {
   border: 5px solid #e5e5e5;

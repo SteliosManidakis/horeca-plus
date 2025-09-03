@@ -33,7 +33,7 @@ export default function Header({ locale, messages }: Props) {
     >
       <Link href={`/${locale}/home`} style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 0 }}>
         <Image
-          src="/images/home/hrc.svg"
+          src="/images/home/hrc.jpg"
           alt="HORECA Plus Logo"
           width={220}
           height={60}

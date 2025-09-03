@@ -114,7 +114,7 @@ export default async function Page({
             lineHeight: 1.15,
             fontWeight: 700,
             letterSpacing: '0.02em',
-            color: '#000000ff',
+            color: '#a37c40',
             fontFamily: 'Georgia, serif'
           }}
         >

@@ -4,11 +4,13 @@ import { Montserrat, Open_Sans } from 'next/font/google';
 const montserrat = Montserrat({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-montserrat',
+  display: 'swap',
 });
 
 const openSans = Open_Sans({
   subsets: ['latin', 'latin-ext', 'greek', 'greek-ext'],
   variable: '--font-open-sans',
+  display: 'swap',
 });
 
 export const metadata = {
@@ -20,9 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="el" className={`${montserrat.variable} ${openSans.variable}`}>
-      <body style={{ fontFamily: 'system-ui, Arial, sans-serif' }}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -166,7 +166,7 @@ export default async function Page({ params }: any) {
 
       <section id="about" className="onepage-section onepage-band">
         <div className="hp-aboutTop">
-          <div>
+          <div className="hp-sectionIntro">
             <div className="onepage-eyebrow">{about.title}</div>
             <h2 className="onepage-title--section hp-aboutTitle">{about.headline}</h2>
 
@@ -225,7 +225,7 @@ export default async function Page({ params }: any) {
             <h2 className="onepage-title--section hp-servicesTitle">{services.heroTitle}</h2>
           </div>
 
-          <div className="hp-servicesIntroWrap">
+          <div className="hp-servicesIntroWrap hp-sectionIntro">
             <p className="onepage-copy hp-servicesLead">{services.heroSubtitle}</p>
             <p className="onepage-copy hp-servicesIntro">{services.introText}</p>
           </div>
@@ -274,7 +274,7 @@ export default async function Page({ params }: any) {
             </h2>
           </div>
 
-          <div className="hp-casesIntroWrap">
+          <div className="hp-casesIntroWrap hp-sectionIntro">
             <p className="onepage-copy hp-casesLead">
               {locale === 'el'
                 ? 'Το section αυτό παρουσιάζει ενδεικτικά σενάρια έργων και τύπους παρεμβάσεων που μπορούν να υποστηριχθούν σε επιχειρήσεις εστίασης και τουρισμού.'
@@ -334,7 +334,7 @@ export default async function Page({ params }: any) {
             <h2 className="onepage-title--section hp-contactTitle">{contact.titleTop}</h2>
           </div>
 
-          <div className="hp-contactIntroWrap">
+          <div className="hp-contactIntroWrap hp-sectionIntro">
             <p className="onepage-copy hp-contactLead">{contact.subtitleTop}</p>
             <p className="onepage-copy hp-contactIntro">
               {locale === 'el'

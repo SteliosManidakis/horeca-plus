@@ -329,54 +329,90 @@ export default async function Page({ params }: any) {
       <section id="contact" className="onepage-section">
         <div className="onepage-eyebrow">{t.nav.contact}</div>
 
-        <h2 className="onepage-title--section">{contact.titleTop}</h2>
+        <div className="hp-contactTop">
+          <div>
+            <h2 className="onepage-title--section hp-contactTitle">{contact.titleTop}</h2>
+          </div>
 
-        <p className="onepage-copy">{contact.subtitleTop}</p>
-
-        <div style={{ height: 30 }} />
-
-        <div className="onepage-grid onepage-grid--3">
-          <article className="onepage-card">
-            <h3>{locale === 'el' ? 'Τηλέφωνο' : 'Phone'}</h3>
-            <p>
-              <a href={`tel:${contact.phone}`} style={{ color: '#111', textDecoration: 'none' }}>
-                {contact.phone}
-              </a>
+          <div className="hp-contactIntroWrap">
+            <p className="onepage-copy hp-contactLead">{contact.subtitleTop}</p>
+            <p className="onepage-copy hp-contactIntro">
+              {locale === 'el'
+                ? 'Αν θέλεις να συζητήσουμε τις ανάγκες της επιχείρησής σου και να δούμε πώς μπορεί να οργανωθεί μια ουσιαστική συνεργασία, μπορείς να επικοινωνήσεις μαζί μας άμεσα.'
+                : 'If you would like to discuss your business needs and explore how a meaningful collaboration could be structured, you can contact us directly.'}
             </p>
-          </article>
-
-          <article className="onepage-card">
-            <h3>Email</h3>
-            <p>
-              <a href={`mailto:${contact.email}`} style={{ color: '#111', textDecoration: 'none' }}>
-                {contact.email}
-              </a>
-            </p>
-          </article>
-
-          <article className="onepage-card">
-            <h3>{locale === 'el' ? 'Κοινωνικά δίκτυα' : 'Social media'}</h3>
-            <div style={{ display: 'grid', gap: 8 }}>
-              <a href={contact.socials.facebook} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
-                {contact.socials.facebookLabel}
-              </a>
-              <a href={contact.socials.instagram} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
-                {contact.socials.instagramLabel}
-              </a>
-              {typeof contact.socials.linkedin === 'string' &&
-                !contact.socials.linkedin.includes('instagram.com') && (
-                  <a href={contact.socials.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
-                    {contact.socials.linkedinLabel}
-                  </a>
-                )}
-            </div>
-          </article>
+          </div>
         </div>
 
-        <div className="onepage-actions" style={{ justifyContent: 'flex-start' }}>
-          <Link href={`/${locale}/contact`} className="onepage-btn onepage-btn--primary">
-            {locale === 'el' ? 'Άνοιξε τη φόρμα επικοινωνίας' : 'Open contact form'}
-          </Link>
+        <div style={{ height: 34 }} />
+
+        <div className="hp-contactGrid">
+          <article className="onepage-card hp-contactCard hp-contactCard--main">
+            <div className="hp-contactCardEyebrow">
+              {locale === 'el' ? 'Άμεση επικοινωνία' : 'Direct contact'}
+            </div>
+
+            <h3 className="hp-contactMainTitle">
+              {locale === 'el'
+                ? 'Είμαστε διαθέσιμοι για μία πρώτη συζήτηση γνωριμίας.'
+                : 'We are available for an initial introductory discussion.'}
+            </h3>
+
+            <p className="hp-contactMainText">
+              {locale === 'el'
+                ? 'Μπορούμε να συζητήσουμε το προφίλ της επιχείρησης, τις βασικές προκλήσεις, τις προτεραιότητες και τα πιθανά πεδία υποστήριξης.'
+                : 'We can discuss your business profile, key challenges, priorities and the potential areas of support.'}
+            </p>
+
+            <div className="hp-contactMainActions">
+              <Link href={`/${locale}/contact`} className="onepage-btn onepage-btn--primary">
+                {locale === 'el' ? 'Άνοιξε τη φόρμα επικοινωνίας' : 'Open contact form'}
+              </Link>
+
+              <a href={`tel:${contact.phone}`} className="onepage-btn onepage-btn--ghost">
+                {locale === 'el' ? 'Κάλεσέ μας' : 'Call us'}
+              </a>
+            </div>
+          </article>
+
+          <div className="hp-contactInfoGrid">
+            <article className="onepage-card hp-contactCard">
+              <div className="hp-contactInfoLabel">{locale === 'el' ? 'Τηλέφωνο' : 'Phone'}</div>
+              <a href={`tel:${contact.phone}`} className="hp-contactInfoValue">
+                {contact.phone}
+              </a>
+            </article>
+
+            <article className="onepage-card hp-contactCard">
+              <div className="hp-contactInfoLabel">Email</div>
+              <a href={`mailto:${contact.email}`} className="hp-contactInfoValue hp-contactInfoValue--small">
+                {contact.email}
+              </a>
+            </article>
+
+            <article className="onepage-card hp-contactCard">
+              <div className="hp-contactInfoLabel">
+                {locale === 'el' ? 'Κοινωνικά δίκτυα' : 'Social media'}
+              </div>
+
+              <div className="hp-contactSocials">
+                <a href={contact.socials.facebook} target="_blank" rel="noopener noreferrer">
+                  {contact.socials.facebookLabel}
+                </a>
+
+                <a href={contact.socials.instagram} target="_blank" rel="noopener noreferrer">
+                  {contact.socials.instagramLabel}
+                </a>
+
+                {typeof contact.socials.linkedin === 'string' &&
+                  !contact.socials.linkedin.includes('instagram.com') && (
+                    <a href={contact.socials.linkedin} target="_blank" rel="noopener noreferrer">
+                      {contact.socials.linkedinLabel}
+                    </a>
+                  )}
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>

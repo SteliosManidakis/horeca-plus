@@ -719,3 +719,147 @@ html{
     grid-template-columns:1fr;
   }
 }
+
+.hp-contactTop{
+  display:grid;
+  grid-template-columns:minmax(0, .95fr) minmax(0, 1.05fr);
+  gap:28px;
+  align-items:start;
+}
+
+.hp-contactTitle{
+  max-width:620px;
+}
+
+.hp-contactIntroWrap{
+  display:grid;
+  gap:16px;
+}
+
+.hp-contactLead{
+  color:#111;
+  font-size:19px;
+}
+
+.hp-contactIntro{
+  color:#444;
+}
+
+.hp-contactGrid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap:24px;
+  align-items:stretch;
+}
+
+.hp-contactInfoGrid{
+  display:grid;
+  gap:20px;
+}
+
+.hp-contactCard{
+  padding:26px;
+}
+
+.hp-contactCard--main{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:100%;
+  background:linear-gradient(180deg, #fffdfa 0%, #f8f4ec 100%);
+  border:1px solid #e7dece;
+}
+
+.hp-contactCardEyebrow{
+  margin-bottom:12px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#a37c40;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-contactMainTitle{
+  margin:0 0 12px;
+  font-size:30px;
+  line-height:1.2;
+  font-weight:700;
+  color:#111;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-contactMainText{
+  margin:0;
+  max-width:720px;
+  font-size:16px;
+  line-height:1.75;
+  color:#3f3f3f;
+}
+
+.hp-contactMainActions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.hp-contactInfoLabel{
+  margin-bottom:10px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#a37c40;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-contactInfoValue{
+  color:#111;
+  text-decoration:none;
+  font-size:24px;
+  line-height:1.3;
+  font-weight:700;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  word-break:break-word;
+}
+
+.hp-contactInfoValue--small{
+  font-size:20px;
+}
+
+.hp-contactSocials{
+  display:grid;
+  gap:10px;
+}
+
+.hp-contactSocials a{
+  color:#111;
+  text-decoration:none;
+  line-height:1.55;
+}
+
+.hp-contactSocials a:hover{
+  text-decoration:underline;
+}
+
+@media (max-width: 980px){
+  .hp-contactTop,
+  .hp-contactGrid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .hp-contactMainTitle{
+    font-size:26px;
+  }
+
+  .hp-contactInfoValue{
+    font-size:20px;
+  }
+
+  .hp-contactInfoValue--small{
+    font-size:18px;
+  }
+}

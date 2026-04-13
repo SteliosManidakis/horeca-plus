@@ -25,16 +25,32 @@
     "heroSubtitle": "Strategy, design and execution for HORECA brands."
   },
   
-  "about": { 
-    "title": "Who We Are",
-    "title2": "Horeca Plus – Your Strategic Partner in Hospitality and Tourism.",
-    "title3": "With over five decades of combined experience, we bring together expertise and deep industry knowledge to deliver meaningful solutions that truly support your business. This way, you have confidence in your decisions and grow your business with steady and measurable steps.",
-    "memberName": "Μανιδάκης Στέλιος",
-    "memberTitle": "Senior Business Analyst",
-    "memberDescription": "With over 20 years of experience in the hospitality and tourism sector, Stelios has held key roles such as Cost Controller Manager, Procurement Manager, Business Consultant, Production Manager, and Entrepreneur. He has managed large teams and complex projects, combining his deep knowledge of business planning with his ability to implement practical and efficient solutions. He specializes in cost management, process optimization, accounting support, and the development of customized software tools for businesses in the sector. His professionalism, technical expertise, and strategic thinking make a significant contribution to the growth and stability of any business aiming for progress.",
-    "memberName1": "Stratis Polychronis",
-    "memberTitle1": "HORECA Specialist",
-    "memberDescription1": "With more than 30 years of experience in the hospitality sector, Stratis possesses deep knowledge of the requirements and particularities of every stage of operating a food service establishment. He has the ability to identify and implement meaningful solutions to the challenges of a constantly evolving and demanding business environment. He specializes in procurement, with extensive experience in managing complex commercial agreements with food and beverage networks. His many years of expertise in the field of wine and spirits enable him to design efficient and profitable wine lists, tailored to the needs and character of each business. In addition, he has experience in staff training, with the goal of increasing sales and optimizing the customer experience."
+  "about": {
+    "title": "About us",
+    "headline": "HORECA PLUS is a strategic partner for hospitality and tourism businesses.",
+    "intro": "We support businesses that seek stronger control, better operational structure and meaningful performance improvement.",
+    "paragraph1": "We combine hands-on industry experience, operational insight and analytical thinking to turn complex business and operational challenges into practical solutions.",
+    "paragraph2": "Our work covers critical areas such as costing, pricing strategy, operational organization, supplier management, process design, team training and support for strategic decision-making.",
+    "paragraph3": "We operate with professionalism, discretion and a strong focus on results, building trusted relationships with businesses that want a serious partner with practical thinking and measurable contribution.",
+    "pillarsTitle": "What defines us",
+    "pillars": [
+      {
+        "title": "Operational precision",
+        "text": "We focus on data, real workflows and decisions supported by a clear picture of the operation."
+      },
+      {
+        "title": "Strategy with practical execution",
+        "text": "We do not stop at theory. We design solutions that can be implemented in practice and deliver results."
+      },
+      {
+        "title": "Integrated business approach",
+        "text": "We connect finance, operations, people, suppliers and procedures into one coherent business view."
+      },
+      {
+        "title": "Trusted and consistent collaboration",
+        "text": "We stand beside every business as a serious partner, with consistency, professional conduct and respect for the responsibility we undertake."
+      }
+    ]
   },
   
   "services": {

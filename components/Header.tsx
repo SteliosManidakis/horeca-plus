@@ -33,14 +33,18 @@ export default function Header({ locale, messages }: Props) {
   useEffect(() => setOpen(false), [pathname]);
 
   const L = (p: string) => `/${locale}${p}`;
-  const items = [
-    { href: L("/home"), label: t.home ?? "Home" },
-    { href: L("/about"), label: t.about ?? "About" },
-    { href: L("/services"), label: t.services ?? "Services" },
-    { href: L("/casestudies"), label: t.casestudies ?? "Case Studies" },
-    { href: L("/contact"), label: t.contact ?? "Contact" },
+    const items = [
+    { href: L("/home#home"), label: t.home ?? "Home" },
+    { href: L("/home#about"), label: t.about ?? "About" },
+    { href: L("/home#services"), label: t.services ?? "Services" },
+    { href: L("/home#casestudies"), label: t.casestudies ?? "Case Studies" },
+    { href: L("/home#contact"), label: t.contact ?? "Contact" },
   ];
-  const isActive = (href: string) => pathname === href;
+
+  const isActive = (href: string) => {
+    const base = href.split("#")[0];
+    return pathname === base || (base.endsWith("/home") && pathname === `/${locale}`);
+  };
 
   // language switch – δείχνει μόνο την άλλη γλώσσα
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
@@ -69,6 +73,7 @@ export default function Header({ locale, messages }: Props) {
               key={it.href}
               href={it.href}
               className={`hp-link ${isActive(it.href) ? "hp-active" : ""}`}
+              onClick={() => setOpen(false)}
             >
               {it.label}
             </Link>
@@ -112,6 +117,7 @@ export default function Header({ locale, messages }: Props) {
               key={it.href}
               href={it.href}
               className={`hp-mobileLink ${isActive(it.href) ? "hp-active" : ""}`}
+              onClick={() => setOpen(false)}
             >
               {it.label}
             </Link>

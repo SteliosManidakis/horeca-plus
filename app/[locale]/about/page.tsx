@@ -1,124 +1,56 @@
-import Image from 'next/image'
 import en from 'messages/en.json'
 import el from 'messages/el.json'
 
-// ΜΟΝΗ αλλαγή: async + await params (Next 15 App Router)
+type Locale = 'el' | 'en'
+
 export default async function Page({
   params,
 }: {
-  params: Promise<{ locale: 'el' | 'en' }>
+  params: Promise<{ locale: Locale }>
 }) {
   const { locale } = await params
-  const t = locale === 'el' ? el : en
+  const t = locale === 'el' ? (el as any) : (en as any)
+  const about = t.about as {
+    title: string
+    headline: string
+    intro: string
+    paragraph1: string
+    paragraph2: string
+    paragraph3: string
+    pillarsTitle: string
+    pillars: Array<{ title: string; text: string }>
+  }
 
   return (
     <>
-      {/* TITLE */}
-      <section style={{ textAlign: 'left', marginTop: '0px', marginBottom: '40px' }}>
-        <h2 style={{
-          fontSize: 35, lineHeight: 1.15, fontWeight: 700, letterSpacing: '0.02em',
-          color: '#a37c40', fontFamily: 'Georgia, serif'
-        }}>
-          {t.about.title}
-        </h2>
-      </section>
+      <section className="onepage-section">
+        <div className="onepage-eyebrow">{about.title}</div>
+        <h1 className="onepage-title--section" style={{ marginBottom: 18 }}>
+          {about.headline}
+        </h1>
 
-      {/* TITLE 2 */}
-      <section style={{ textAlign: 'left', marginTop: '0px', marginBottom: '40px' }}>
-        <h2 style={{
-          fontSize: 25, lineHeight: 1.15, fontWeight: 100, letterSpacing: '0.02em',
-          color: '#000000ff', fontFamily: 'Verdana, sans-serif'
-        }}>
-          {t.about.title2}
-        </h2>
-      </section>
-
-      {/* TITLE 3 */}
-      <section style={{ textAlign: 'left', marginTop: '-20px', marginBottom: '40px' }}>
-        <h2 style={{
-          fontSize: 20, lineHeight: 1.3, fontWeight: 100, letterSpacing: '0.02em',
-          color: '#000000ff', fontFamily: 'Georgia, serif'
-        }}>
-          {t.about.title3}
-        </h2>
-      </section>
-
-      {/* ΑΡΙΣΤΕΡΑ ΕΙΚΟΝΑ – ΔΕΞΙΑ ΚΕΙΜΕΝΟ */}
-      <section style={{ textAlign: 'left', marginTop: '0px', marginBottom: '40px' }}>
-        <div style={{
-          float: 'left', width: 'min(42vw, 420px)',
-          marginRight: 24, marginBottom: 12, borderRadius: 12, overflow: 'hidden'
-        }}>
-          <Image
-            src="/images/aboutus/stelios.jpg"
-            alt={t.about.memberName}
-            width={1000} height={670}
-            style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
-            priority
-          />
-        </div>
-
-        <h2 style={{
-          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#a37c40',
-          fontFamily: 'Georgia, serif', marginTop: 0, marginBottom: 8
-        }}>
-          {t.about.memberName}
-        </h2>
-
-        <h3 style={{
-          fontSize: 18, lineHeight: 1.3, fontWeight: 400, color: '#1a499bff',
-          fontFamily: 'Verdana, sans-serif', marginTop: 0, marginBottom: 16
-        }}>
-          {t.about.memberTitle}
-        </h3>
-
-        <p style={{
-          fontSize: 20, lineHeight: 1.5, fontWeight: 100, color: '#000',
-          fontFamily: 'Georgia, serif', textAlign: 'justify', marginTop: 0
-        }}>
-          {t.about.memberDescription}
+        <p className="onepage-copy" style={{ fontSize: 20, color: '#111', marginBottom: 18 }}>
+          {about.intro}
         </p>
 
-        <div style={{ clear: 'both' }} />
-      </section>
+        <p className="onepage-copy">{about.paragraph1}</p>
+        <p className="onepage-copy">{about.paragraph2}</p>
+        <p className="onepage-copy">{about.paragraph3}</p>
 
-      {/* ΔΕΞΙΑ ΕΙΚΟΝΑ – ΑΡΙΣΤΕΡΑ ΚΕΙΜΕΝΟ */}
-      <section style={{ textAlign: 'left', marginTop: '0px', marginBottom: '40px' }}>
-        <div style={{
-          float: 'right', width: 'min(42vw, 420px)',
-          marginLeft: 24, marginBottom: 12, borderRadius: 12, overflow: 'hidden'
-        }}>
-          <Image
-            src="/images/aboutus/stratis.jpg"
-            alt={t.about.memberName1}
-            width={1000} height={670}
-            style={{ display: 'block', width: '100%', height: 'auto', objectFit: 'cover' }}
-            priority
-          />
-        </div>
+        <div style={{ height: 32 }} />
 
-        <h2 style={{
-          fontSize: 24, lineHeight: 1.3, fontWeight: 700, color: '#a37c40',
-          fontFamily: 'Georgia, serif', marginTop: 0, marginBottom: 8
-        }}>
-          {t.about.memberName1}
+        <h2 className="onepage-title--section" style={{ fontSize: 'clamp(24px, 3vw, 32px)', marginBottom: 20 }}>
+          {about.pillarsTitle}
         </h2>
 
-        <h3 style={{
-          fontSize: 18, lineHeight: 1.3, fontWeight: 400, color: '#1a499bff',
-          fontFamily: 'Verdana, sans-serif', marginTop: 0, marginBottom: 16
-        }}>
-          {t.about.memberTitle1}
-        </h3>
-
-        <p style={{
-          fontSize: 20, lineHeight: 1.5, fontWeight: 100, color: '#000',
-          fontFamily: 'Georgia, serif', textAlign: 'justify', marginTop: 0
-        }}>
-          {t.about.memberDescription1}
-        </p>
-
-        <div style={{ clear: 'both' }} />
+        <div className="onepage-grid onepage-grid--2">
+          {about.pillars.map((pillar) => (
+            <article key={pillar.title} className="onepage-card">
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          ))}
+        </div>
       </section>
     </>
   )

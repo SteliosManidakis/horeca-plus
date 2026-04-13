@@ -40,20 +40,11 @@ export async function generateMetadata({
       siteName: 'HORECA Plus',
       locale: isEl ? 'el_GR' : 'en_US',
       type: 'website',
-      images: [
-        {
-          url: 'https://horeca-plus.gr/images/home/hero.jpg',
-          width: 1200,
-          height: 630,
-          alt: 'HORECA Plus',
-        },
-      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['https://horeca-plus.gr/images/home/hero.jpg'],
     },
   }
 }

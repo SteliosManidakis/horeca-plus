@@ -34,21 +34,12 @@ export const metadata = {
     description:
       'Strategic, operational and costing support for hospitality and tourism businesses.',
     url: 'https://horeca-plus.gr',
-    images: [
-      {
-        url: 'https://horeca-plus.gr/images/home/hero.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'HORECA Plus',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'HORECA Plus',
     description:
       'Strategic, operational and costing support for hospitality and tourism businesses.',
-    images: ['https://horeca-plus.gr/images/home/hero.jpg'],
   },
   robots: {
     index: true,

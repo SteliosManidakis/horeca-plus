@@ -291,3 +291,193 @@ html{
   background:#efe8dc;
   margin:0;
 }
+
+.hp-heroShell{
+  padding-top: 44px;
+  padding-bottom: 64px;
+}
+
+.hp-heroGrid{
+  display:grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
+  gap: 38px;
+  align-items:center;
+}
+
+.hp-heroContent{
+  min-width:0;
+}
+
+.hp-heroTitle{
+  max-width: 760px;
+  margin-bottom: 18px;
+}
+
+.hp-heroLead{
+  margin:0;
+  max-width: 720px;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height:1.45;
+  font-weight:600;
+  color:#1b1b1b;
+}
+
+.hp-heroCopy{
+  margin-top:16px;
+  max-width: 720px;
+}
+
+.hp-heroTags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:24px;
+}
+
+.hp-heroTag{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:36px;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid #e3d8c6;
+  background:#fbf8f2;
+  color:#4e3d1d;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-heroActions{
+  justify-content:flex-start;
+  margin-top:28px;
+}
+
+.hp-heroMediaWrap{
+  min-width:0;
+}
+
+.hp-heroMedia{
+  width:100%;
+  max-width: 620px;
+  margin-left:auto;
+}
+
+.hp-aboutTop{
+  display:grid;
+  grid-template-columns:minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap:28px;
+  align-items:start;
+}
+
+.hp-aboutTitle{
+  max-width: 760px;
+}
+
+.hp-aboutIntro{
+  font-size:20px;
+  color:#111;
+}
+
+.hp-sideCard{
+  border:1px solid #e4dccf;
+  border-radius:20px;
+  background:#fffdfa;
+  padding:24px;
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.05);
+}
+
+.hp-sideCardEyebrow{
+  margin-bottom:10px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#a37c40;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-sideCardTitle{
+  margin:0 0 18px;
+  font-size:22px;
+  line-height:1.35;
+  font-weight:700;
+  color:#111;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-sideList{
+  display:grid;
+  gap:14px;
+}
+
+.hp-sideListItem{
+  display:grid;
+  grid-template-columns:10px 1fr;
+  gap:12px;
+  align-items:start;
+  font-size:15px;
+  line-height:1.65;
+  color:#333;
+}
+
+.hp-sideListDot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:#a37c40;
+  margin-top:8px;
+}
+
+.hp-subsectionTitle{
+  margin:0 0 20px;
+  font-size:24px;
+  line-height:1.2;
+  font-weight:700;
+  color:#111;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-pillCard{
+  background:#fff;
+}
+
+@media (max-width: 980px){
+  .hp-heroGrid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .hp-heroMedia{
+    max-width:none;
+    margin-left:0;
+  }
+
+  .hp-aboutTop{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width: 640px){
+  .hp-heroShell{
+    padding-top: 28px;
+    padding-bottom: 48px;
+  }
+
+  .hp-heroLead{
+    font-size:20px;
+  }
+
+  .hp-heroTags{
+    gap:8px;
+  }
+
+  .hp-heroTag{
+    font-size:12px;
+    min-height:34px;
+    padding:0 12px;
+  }
+}

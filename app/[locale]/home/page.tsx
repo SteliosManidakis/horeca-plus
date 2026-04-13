@@ -48,80 +48,117 @@ export default async function Page({ params }: any) {
     }
   }
 
+  const heroTags =
+    locale === 'el'
+      ? ['Στρατηγική', 'Λειτουργική Οργάνωση', 'Κοστολόγηση', 'Εκπαίδευση', 'Αποδοτικότητα']
+      : ['Strategy', 'Operations', 'Costing', 'Training', 'Performance']
+
+  const approachPoints =
+    locale === 'el'
+      ? [
+          'Ανάλυση πραγματικών δεδομένων και λειτουργικών αναγκών',
+          'Σχεδιασμός εφαρμόσιμων λύσεων με σαφή επιχειρησιακή λογική',
+          'Υποστήριξη υλοποίησης με στόχο σταθερό και μετρήσιμο αποτέλεσμα',
+        ]
+      : [
+          'Analysis of real data and operational needs',
+          'Design of applicable solutions with clear business logic',
+          'Implementation support focused on stable and measurable results',
+        ]
+
   return (
     <main style={{ paddingTop: 'var(--hp-header-h, 72px)' }}>
-      <section id="home" className="onepage-section--hero onepage-center">
-        <div className="onepage-eyebrow">HORECA PLUS</div>
+      <section id="home" className="onepage-section--hero hp-heroShell">
+        <div className="hp-heroGrid">
+          <div className="hp-heroContent">
+            <div className="onepage-eyebrow">HORECA PLUS</div>
 
-        <h1 className="onepage-title">{t.nav.title}</h1>
+            <h1 className="onepage-title hp-heroTitle">{t.nav.title}</h1>
 
-        <p className="onepage-copy" style={{ fontSize: 22, color: '#111' }}>
-          {t.nav.title2}
-        </p>
+            <p className="hp-heroLead">{t.nav.title2}</p>
 
-        <p className="onepage-copy" style={{ marginTop: 16 }}>
-          {t.nav.title3}
-        </p>
+            <p className="onepage-copy hp-heroCopy">{t.nav.title3}</p>
 
-        <div className="onepage-actions">
-          <Link href={`/${locale}/home#contact`} className="onepage-btn onepage-btn--primary">
-            {t.nav.cta}
-          </Link>
+            <div className="hp-heroTags">
+              {heroTags.map((tag) => (
+                <span key={tag} className="hp-heroTag">
+                  {tag}
+                </span>
+              ))}
+            </div>
 
-          <Link href={`/${locale}/home#services`} className="onepage-btn onepage-btn--ghost">
-            {locale === 'el' ? 'Δες τις υπηρεσίες' : 'Explore services'}
-          </Link>
-        </div>
+            <div className="onepage-actions hp-heroActions">
+              <Link href={`/${locale}/home#contact`} className="onepage-btn onepage-btn--primary">
+                {t.nav.cta}
+              </Link>
 
-        <div style={{ height: 34 }} />
+              <Link href={`/${locale}/home#services`} className="onepage-btn onepage-btn--ghost">
+                {locale === 'el' ? 'Δες τις υπηρεσίες' : 'Explore services'}
+              </Link>
+            </div>
+          </div>
 
-        <div className="onepage-heroMedia">
-          <Image
-            src="/images/home/hero.jpg"
-            alt={locale === 'el' ? 'HORECA Plus' : 'HORECA Plus'}
-            fill
-            style={{ objectFit: 'cover' }}
-            sizes="(max-width: 1200px) 92vw, 1100px"
-            priority
-          />
+          <div className="hp-heroMediaWrap">
+            <div className="onepage-heroMedia hp-heroMedia">
+              <Image
+                src="/images/home/hero.jpg"
+                alt="HORECA Plus"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 1200px) 92vw, 620px"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       <div className="onepage-divider" />
 
       <section id="about" className="onepage-section onepage-band">
-        <div className="onepage-eyebrow">{about.title}</div>
+        <div className="hp-aboutTop">
+          <div>
+            <div className="onepage-eyebrow">{about.title}</div>
+            <h2 className="onepage-title--section hp-aboutTitle">{about.headline}</h2>
 
-        <h2 className="onepage-title--section">{about.headline}</h2>
+            <p className="onepage-copy hp-aboutIntro">{about.intro}</p>
 
-        <p className="onepage-copy" style={{ fontSize: 20, color: '#111' }}>
-          {about.intro}
-        </p>
+            <div style={{ height: 18 }} />
 
-        <div style={{ height: 18 }} />
+            <p className="onepage-copy">{about.paragraph1}</p>
+            <p className="onepage-copy">{about.paragraph2}</p>
+            <p className="onepage-copy">{about.paragraph3}</p>
+          </div>
 
-        <p className="onepage-copy">{about.paragraph1}</p>
-        <p className="onepage-copy">{about.paragraph2}</p>
-        <p className="onepage-copy">{about.paragraph3}</p>
+          <aside className="hp-sideCard">
+            <div className="hp-sideCardEyebrow">
+              {locale === 'el' ? 'Η προσέγγισή μας' : 'Our approach'}
+            </div>
 
-        <div style={{ height: 34 }} />
+            <h3 className="hp-sideCardTitle">
+              {locale === 'el'
+                ? 'Δουλεύουμε με επιχειρησιακή σκέψη, μεθοδικότητα και προσανατολισμό στο αποτέλεσμα.'
+                : 'We work with business discipline, structure and a clear focus on results.'}
+            </h3>
 
-        <h3
-          style={{
-            margin: '0 0 18px',
-            fontSize: 26,
-            lineHeight: 1.2,
-            fontWeight: 700,
-            color: '#111',
-            fontFamily: 'Georgia, serif',
-          }}
-        >
-          {about.pillarsTitle}
-        </h3>
+            <div className="hp-sideList">
+              {approachPoints.map((point) => (
+                <div key={point} className="hp-sideListItem">
+                  <span className="hp-sideListDot" />
+                  <span>{point}</span>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+
+        <div style={{ height: 40 }} />
+
+        <h3 className="hp-subsectionTitle">{about.pillarsTitle}</h3>
 
         <div className="onepage-grid onepage-grid--2">
           {about.pillars.map((pillar) => (
-            <article key={pillar.title} className="onepage-card">
+            <article key={pillar.title} className="onepage-card hp-pillCard">
               <h3>{pillar.title}</h3>
               <p>{pillar.text}</p>
             </article>

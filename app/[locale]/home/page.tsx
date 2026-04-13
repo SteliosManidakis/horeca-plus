@@ -171,44 +171,38 @@ export default async function Page({ params }: any) {
       <section id="services" className="onepage-section">
         <div className="onepage-eyebrow">{t.nav.services}</div>
 
-        <h2 className="onepage-title--section">{services.heroTitle}</h2>
+        <div className="hp-servicesTop">
+          <div>
+            <h2 className="onepage-title--section hp-servicesTitle">{services.heroTitle}</h2>
+          </div>
 
-        <p className="onepage-copy">{services.heroSubtitle}</p>
+          <div className="hp-servicesIntroWrap">
+            <p className="onepage-copy hp-servicesLead">{services.heroSubtitle}</p>
+            <p className="onepage-copy hp-servicesIntro">{services.introText}</p>
+          </div>
+        </div>
 
-        <div style={{ height: 18 }} />
+        <div style={{ height: 34 }} />
 
-        <p className="onepage-copy">{services.introText}</p>
+        <div className="onepage-grid onepage-grid--3 hp-servicesGrid">
+          {services.categories.map((cat, index) => (
+            <article key={cat.id} className="onepage-card hp-serviceCard">
+              <div className="hp-serviceCardTop">
+                <div className="hp-serviceIndex">
+                  {String(index + 1).padStart(2, '0')}
+                </div>
 
-        <div style={{ height: 30 }} />
+                <div>
+                  <h3 className="hp-serviceCardTitle">{cat.title}</h3>
+                  <p className="hp-serviceCardDesc">{cat.description}</p>
+                </div>
+              </div>
 
-        <div className="onepage-grid onepage-grid--3">
-          {services.categories.map((cat) => (
-            <article key={cat.id} className="onepage-card">
-              <h3>{cat.title}</h3>
-              <p style={{ marginBottom: 14 }}>{cat.description}</p>
-
-              <div style={{ display: 'grid', gap: 12 }}>
+              <div className="hp-serviceItems">
                 {cat.items.map((item) => (
-                  <div key={item.id}>
-                    <div
-                      style={{
-                        fontWeight: 700,
-                        color: '#111',
-                        marginBottom: 4,
-                        fontSize: 16,
-                      }}
-                    >
-                      {item.title}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: 15,
-                        lineHeight: 1.6,
-                        color: '#444',
-                      }}
-                    >
-                      {item.short}
-                    </div>
+                  <div key={item.id} className="hp-serviceItem">
+                    <div className="hp-serviceItemTitle">{item.title}</div>
+                    <div className="hp-serviceItemText">{item.short}</div>
                   </div>
                 ))}
               </div>

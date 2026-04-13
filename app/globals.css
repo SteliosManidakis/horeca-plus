@@ -481,3 +481,116 @@ html{
     padding:0 12px;
   }
 }
+
+.hp-servicesTop{
+  display:grid;
+  grid-template-columns:minmax(0, .95fr) minmax(0, 1.05fr);
+  gap:28px;
+  align-items:start;
+}
+
+.hp-servicesTitle{
+  max-width: 620px;
+}
+
+.hp-servicesIntroWrap{
+  display:grid;
+  gap:16px;
+}
+
+.hp-servicesLead{
+  color:#111;
+  font-size:19px;
+}
+
+.hp-servicesIntro{
+  color:#444;
+}
+
+.hp-servicesGrid{
+  align-items:start;
+}
+
+.hp-serviceCard{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  padding:26px;
+}
+
+.hp-serviceCardTop{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:16px;
+  align-items:start;
+  margin-bottom:22px;
+}
+
+.hp-serviceIndex{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:46px;
+  height:46px;
+  padding:0 12px;
+  border-radius:14px;
+  background:#f5f1e8;
+  color:#a37c40;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.06em;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-serviceCardTitle{
+  margin:0 0 8px;
+  font-size:24px;
+  line-height:1.2;
+  font-weight:700;
+  color:#111;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-serviceCardDesc{
+  margin:0;
+  font-size:15px;
+  line-height:1.7;
+  color:#5a5a5a;
+}
+
+.hp-serviceItems{
+  display:grid;
+  gap:14px;
+  margin-top:auto;
+}
+
+.hp-serviceItem{
+  padding-top:14px;
+  border-top:1px solid #eee6da;
+}
+
+.hp-serviceItem:first-child{
+  padding-top:0;
+  border-top:0;
+}
+
+.hp-serviceItemTitle{
+  margin:0 0 4px;
+  font-size:16px;
+  line-height:1.45;
+  font-weight:700;
+  color:#111;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+}
+
+.hp-serviceItemText{
+  font-size:14px;
+  line-height:1.65;
+  color:#4a4a4a;
+}
+
+@media (max-width: 980px){
+  .hp-servicesTop{
+    grid-template-columns:1fr;
+  }
+}

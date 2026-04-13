@@ -5,11 +5,11 @@
     "services": "Services",
     "casestudies": "Case Studies",
     "contact": "Contact",
-    "title": "We help Hospitality & Tourism businesses",
-    "title2": "with practical Tools and Meaningful Proposals",
-    "cta": "Make the difference",
-    "title3": "with practical solutions that deliver Results",
-    "title4": "Our experience becomes your Advantage"
+    "title": "We support hospitality and tourism businesses",
+    "title2": "with strategic thinking, operational structure and stronger business control",
+    "cta": "Get in touch",
+    "title3": "We design practical solutions that improve day-to-day operations, strengthen control and support better decision-making.",
+    "title4": "Experience, discipline and practical thinking become an advantage for your business"
   },
   "newsletter": {
     "title": "Stay in the loop",
@@ -27,37 +27,37 @@
   
   "about": {
     "title": "About us",
-    "headline": "HORECA PLUS is a strategic partner for hospitality and tourism businesses.",
-    "intro": "We support businesses that seek stronger control, better operational structure and meaningful performance improvement.",
-    "paragraph1": "We combine hands-on industry experience, operational insight and analytical thinking to turn complex business and operational challenges into practical solutions.",
-    "paragraph2": "Our work covers critical areas such as costing, pricing strategy, operational organization, supplier management, process design, team training and support for strategic decision-making.",
-    "paragraph3": "We operate with professionalism, discretion and a strong focus on results, building trusted relationships with businesses that want a serious partner with practical thinking and measurable contribution.",
+    "headline": "HORECA PLUS operates as a strategic partner for hospitality and tourism businesses.",
+    "intro": "We support businesses that seek better organization, stronger control, clearer operational visibility and a more stable foundation for growth.",
+    "paragraph1": "We combine operational experience, industry knowledge and analytical thinking in order to turn complex business and operational needs into solutions that can be applied in practice.",
+    "paragraph2": "Our support covers critical areas such as costing, pricing policy, operational organization, procurement management, process design, team training and decision-making support.",
+    "paragraph3": "We approach every collaboration with professionalism, discretion and a strong focus on results, aiming to deliver real value to businesses that want a serious partner with practical thinking and measurable contribution.",
     "pillarsTitle": "What defines us",
     "pillars": [
       {
-        "title": "Operational precision",
-        "text": "We focus on data, real workflows and decisions supported by a clear picture of the operation."
+        "title": "Operational clarity",
+        "text": "We provide a clear view of operations, workflows, data and the real priorities of the business."
       },
       {
-        "title": "Strategy with practical execution",
-        "text": "We do not stop at theory. We design solutions that can be implemented in practice and deliver results."
+        "title": "Strategy with execution",
+        "text": "We design solutions that do not remain theoretical, but can be implemented in a practical and organized way."
       },
       {
-        "title": "Integrated business approach",
-        "text": "We connect finance, operations, people, suppliers and procedures into one coherent business view."
+        "title": "Integrated approach",
+        "text": "We connect financial data, operations, people, suppliers and procedures within one coherent decision-making framework."
       },
       {
-        "title": "Trusted and consistent collaboration",
-        "text": "We stand beside every business as a serious partner, with consistency, professional conduct and respect for the responsibility we undertake."
+        "title": "Consistency and reliability",
+        "text": "We work with seriousness, accountability and constant commitment to the quality of both the collaboration and the outcome."
       }
     ]
   },
   
   "services": {
-    "heroTitle": "Services that elevate your business",
-    "heroSubtitle": "We provide end-to-end services covering all critical stages of your operation: from financial analysis, costing and pricing strategy to equipment selection, supplier management, staff training and sales menu design.",
+    "heroTitle": "Services with strategic value and practical execution",
+    "heroSubtitle": "We provide services that cover critical areas of a hospitality or tourism business, from financial visibility and costing to process organization, procurement, team training and commercial policy.",
     "introTitle": "What we offer",
-    "introText": "Our goal is to build viable, resilient and profitable businesses with practical tools, clear data and tailored guidance.",
+    "introText": "Our goal is to strengthen operational stability, business control and the company’s ability to grow on a more organized and sustainable foundation.",
     "categories": [
       {
         "id": "finance",
@@ -176,8 +176,8 @@
   "casestudies": { "title": "Case Studies" },
  
   "contact": {
-    "titleTop": "Want to see how we can help?",
-    "subtitleTop": "Get in touch with us",
+    "titleTop": "Let us discuss your business needs and priorities",
+    "subtitleTop": "Get in touch with us for an initial introductory conversation",
     "phone": "+30 693 72 46 891",
     "email": "horecaplusgr@gmail.com",
     "socials": {

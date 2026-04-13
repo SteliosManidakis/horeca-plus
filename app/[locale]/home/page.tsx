@@ -89,7 +89,7 @@ export default async function Page({ params }: any) {
 
       <div className="onepage-divider" />
 
-      <section id="about" className="onepage-section">
+      <section id="about" className="onepage-section onepage-band">
         <div className="onepage-eyebrow">{about.title}</div>
 
         <h2 className="onepage-title--section">{about.headline}</h2>
@@ -182,7 +182,7 @@ export default async function Page({ params }: any) {
 
       <div className="onepage-divider" />
 
-      <section id="casestudies" className="onepage-section">
+      <section id="casestudies" className="onepage-section onepage-band">
         <div className="onepage-eyebrow">{t.nav.casestudies}</div>
 
         <h2 className="onepage-title--section">
@@ -261,17 +261,20 @@ export default async function Page({ params }: any) {
 
           <article className="onepage-card">
             <h3>{locale === 'el' ? 'Κοινωνικά δίκτυα' : 'Social media'}</h3>
-            <p style={{ display: 'grid', gap: 8 }}>
+            <div style={{ display: 'grid', gap: 8 }}>
               <a href={contact.socials.facebook} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
                 {contact.socials.facebookLabel}
               </a>
               <a href={contact.socials.instagram} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
                 {contact.socials.instagramLabel}
               </a>
-              <a href={contact.socials.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
-                {contact.socials.linkedinLabel}
-              </a>
-            </p>
+              {typeof contact.socials.linkedin === 'string' &&
+                !contact.socials.linkedin.includes('instagram.com') && (
+                  <a href={contact.socials.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#111' }}>
+                    {contact.socials.linkedinLabel}
+                  </a>
+                )}
+            </div>
           </article>
         </div>
 

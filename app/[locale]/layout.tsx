@@ -27,7 +27,7 @@ export default function LocaleLayout({
       <main style={{ maxWidth: 1080, margin: '0 auto', padding: '0 24px' }}>
         {children}
       </main>
-      <Footer messages={messages} />
+      <Footer locale={locale} messages={messages} />
     </>
   )
 }

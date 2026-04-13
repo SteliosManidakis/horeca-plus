@@ -26,6 +26,11 @@ export default async function ContactPage({
     linkedinLabel: string
   }
 
+  const linkedinOk =
+  typeof socials.linkedin === 'string' &&
+  socials.linkedin.length > 0 &&
+  !socials.linkedin.includes('instagram.com')
+
   return (
     <main className={s.contactWrap}>
       {/* Τίτλοι */}
@@ -42,7 +47,14 @@ export default async function ContactPage({
             <li><span aria-hidden>✉️</span><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
             <li><FaFacebook aria-hidden style={{ fontSize: 22 }} /><a href={socials.facebook} target="_blank" rel="noopener noreferrer">{socials.facebookLabel}</a></li>
             <li><FaInstagram aria-hidden style={{ fontSize: 22 }} /><a href={socials.instagram} target="_blank" rel="noopener noreferrer">{socials.instagramLabel}</a></li>
-            <li><FaLinkedin aria-hidden style={{ fontSize: 22 }} /><a href={socials.linkedin}target="_blank"rel="noopener noreferrer">{socials.linkedinLabel}</a></li>
+            {linkedinOk && (
+              <li>
+                <FaLinkedin aria-hidden style={{ fontSize: 22 }} />
+                <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">
+                  {socials.linkedinLabel}
+                </a>
+              </li>
+            )}
           </ul>
           <div style={{ flex: 1 }} />
         </div>

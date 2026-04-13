@@ -264,3 +264,30 @@ html{
     padding:56px 0;
   }
 }
+
+.onepage-band{
+  background:#faf8f4;
+}
+
+.onepage-title,
+.onepage-title--section{
+  max-width: 980px;
+}
+
+.onepage-card{
+  border:1px solid #e7e2d8;
+  border-radius:20px;
+  background:#fff;
+  padding:24px;
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.04);
+}
+
+.onepage-heroMedia{
+  box-shadow: 0 18px 50px rgba(17, 17, 17, 0.12);
+}
+
+.onepage-divider{
+  height:1px;
+  background:#efe8dc;
+  margin:0;
+}

@@ -13,10 +13,59 @@ const openSans = Open_Sans({
   display: 'swap',
 });
 
+/** @type {import('next').Metadata} */
 export const metadata = {
-  title: 'HORECA Plus',
-  description: 'Your trusted partner in hospitality & tourism',
-  icons: { icon: '/favicon.ico' },
+  metadataBase: new URL('https://horeca-plus.gr'),
+  applicationName: 'HORECA Plus',
+  title: {
+    default: 'HORECA Plus | Hospitality & Tourism Business Consulting',
+    template: '%s | HORECA Plus',
+  },
+  description:
+    'Strategic, operational and costing support for hospitality and tourism businesses.',
+  openGraph: {
+    type: 'website',
+    siteName: 'HORECA Plus',
+    title: 'HORECA Plus',
+    description:
+      'Strategic, operational and costing support for hospitality and tourism businesses.',
+    url: 'https://horeca-plus.gr',
+    images: [
+      {
+        url: 'https://horeca-plus.gr/images/home/hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'HORECA Plus',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'HORECA Plus',
+    description:
+      'Strategic, operational and costing support for hospitality and tourism businesses.',
+    images: ['https://horeca-plus.gr/images/home/hero.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#111111',
 };
 
 export default function RootLayout({ children }) {

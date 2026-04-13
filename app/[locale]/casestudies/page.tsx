@@ -1,6 +1,55 @@
 // app/[locale]/casestudies/page.tsx
 
 import Link from "next/link";
+import type { Metadata } from 'next'
+
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const p = typeof params?.then === 'function' ? await params : params
+  const locale: 'el' | 'en' = p?.locale === 'el' ? 'el' : 'en'
+  const isEl = locale === 'el'
+
+  const title = isEl ? 'Case Studies' : 'Case Studies'
+  const description = isEl
+    ? 'Ενδεικτικά σενάρια έργων και πεδία επιχειρησιακής παρέμβασης για επιχειρήσεις εστίασης και τουρισμού.'
+    : 'Indicative project scenarios and fields of operational intervention for hospitality and tourism businesses.'
+
+  const canonical = `https://horeca-plus.gr/${locale}/casestudies`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        'el-GR': 'https://horeca-plus.gr/el/casestudies',
+        'en-US': 'https://horeca-plus.gr/en/casestudies',
+        'x-default': 'https://horeca-plus.gr/el/casestudies',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'HORECA Plus',
+      locale: isEl ? 'el_GR' : 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: 'https://horeca-plus.gr/images/home/hero.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'HORECA Plus',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://horeca-plus.gr/images/home/hero.jpg'],
+    },
+  }
+}
 
 export default async function Page({ params }: any) {
   // params μπορεί να είναι είτε object είτε Promise<object> στο δικό σου setup

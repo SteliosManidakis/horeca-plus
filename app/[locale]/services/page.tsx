@@ -4,12 +4,67 @@ import React from 'react'
 import en from 'messages/en.json'
 import el from 'messages/el.json'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
 type Locale = 'el' | 'en'
 
 // Ρύθμισε αυτά σύμφωνα με το header σου
 const HEADER_H = 64  // περίπου το ύψος του Header
 const SUBNAV_H = 48  // περίπου το ύψος του subnav
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const isEl = locale === 'el'
+
+  const title = isEl
+    ? 'Υπηρεσίες'
+    : 'Services'
+
+  const description = isEl
+    ? 'Δες τις υπηρεσίες της HORECA Plus σε κοστολόγηση, λειτουργική οργάνωση, προμήθειες, εκπαίδευση και στρατηγική υποστήριξη.'
+    : 'Explore HORECA Plus services in costing, operational structure, procurement, training and strategic support.'
+
+  const canonical = `https://horeca-plus.gr/${locale}/services`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        'el-GR': 'https://horeca-plus.gr/el/services',
+        'en-US': 'https://horeca-plus.gr/en/services',
+        'x-default': 'https://horeca-plus.gr/el/services',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'HORECA Plus',
+      locale: isEl ? 'el_GR' : 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: 'https://horeca-plus.gr/images/home/hero.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'HORECA Plus',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://horeca-plus.gr/images/home/hero.jpg'],
+    },
+  }
+}
 
 export default function ServicesPage(
   { params }: { params: Promise<{ locale: Locale }> }

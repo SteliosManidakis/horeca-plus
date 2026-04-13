@@ -1,7 +1,62 @@
 import en from 'messages/en.json'
 import el from 'messages/el.json'
+import type { Metadata } from 'next'
 
 type Locale = 'el' | 'en'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: 'el' | 'en' }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const isEl = locale === 'el'
+
+  const title = isEl
+    ? 'Σχετικά με εμάς'
+    : 'About us'
+
+  const description = isEl
+    ? 'Γνώρισε τη φιλοσοφία και την προσέγγιση της HORECA Plus ως στρατηγικού συνεργάτη για επιχειρήσεις εστίασης και τουρισμού.'
+    : 'Learn about the philosophy and approach of HORECA Plus as a strategic partner for hospitality and tourism businesses.'
+
+  const canonical = `https://horeca-plus.gr/${locale}/about`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        'el-GR': 'https://horeca-plus.gr/el/about',
+        'en-US': 'https://horeca-plus.gr/en/about',
+        'x-default': 'https://horeca-plus.gr/el/about',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'HORECA Plus',
+      locale: isEl ? 'el_GR' : 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: 'https://horeca-plus.gr/images/home/hero.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'HORECA Plus',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://horeca-plus.gr/images/home/hero.jpg'],
+    },
+  }
+}
 
 export default async function Page({
   params,

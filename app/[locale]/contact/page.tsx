@@ -4,9 +4,63 @@ import el from 'messages/el.json'
 import ContactForm from './ContactForm'
 import s from './page.module.css'
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-
+import type { Metadata } from 'next'
 
 type Locale = 'el' | 'en'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const isEl = locale === 'el'
+
+  const title = isEl
+    ? 'Επικοινωνία'
+    : 'Contact'
+
+  const description = isEl
+    ? 'Επικοινώνησε με τη HORECA Plus για μία πρώτη συζήτηση σχετικά με τις ανάγκες και τις προτεραιότητες της επιχείρησής σου.'
+    : 'Contact HORECA Plus for an initial discussion about your business needs and priorities.'
+
+  const canonical = `https://horeca-plus.gr/${locale}/contact`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical,
+      languages: {
+        'el-GR': 'https://horeca-plus.gr/el/contact',
+        'en-US': 'https://horeca-plus.gr/en/contact',
+        'x-default': 'https://horeca-plus.gr/el/contact',
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: 'HORECA Plus',
+      locale: isEl ? 'el_GR' : 'en_US',
+      type: 'website',
+      images: [
+        {
+          url: 'https://horeca-plus.gr/images/home/hero.jpg',
+          width: 1200,
+          height: 630,
+          alt: 'HORECA Plus',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: ['https://horeca-plus.gr/images/home/hero.jpg'],
+    },
+  }
+}
 
 export default async function ContactPage({
   params,

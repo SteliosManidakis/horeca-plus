@@ -66,6 +66,55 @@ export default async function Page({ params }: any) {
           'Implementation support focused on stable and measurable results',
         ]
 
+  const caseStudies =
+  locale === 'el'
+    ? [
+        {
+          label: 'Scenario 01',
+          sector: 'Εστιατόριο / Food Service',
+          title: 'Αναδιοργάνωση κόστους και τιμολογιακής πολιτικής',
+          text: 'Επανεξέταση κοστολόγησης, εμπορικής λογικής και δομής καταλόγου με στόχο καλύτερο έλεγχο περιθωρίου και καθαρότερες αποφάσεις.',
+          outcome: 'Εστίαση σε έλεγχο κόστους, περιθώριο και σαφέστερη εμπορική στρατηγική.',
+        },
+        {
+          label: 'Scenario 02',
+          sector: 'Ξενοδοχείο / Hospitality',
+          title: 'Βελτίωση λειτουργικής οργάνωσης και διαδικασιών',
+          text: 'Χαρτογράφηση ροών, ρόλων και σημείων ασυνέχειας για υποστήριξη πιο σταθερής καθημερινής λειτουργίας και καλύτερου συντονισμού ομάδων.',
+          outcome: 'Έμφαση σε οργάνωση, συνέπεια εφαρμογής και λειτουργική αποδοτικότητα.',
+        },
+        {
+          label: 'Scenario 03',
+          sector: 'Procurement & Supply',
+          title: 'Έλεγχος προμηθειών και αξιολόγηση προμηθευτών',
+          text: 'Συγκέντρωση και ανάλυση δεδομένων αγορών, παρακολούθηση τιμών και υποστήριξη επιλογών που ενισχύουν τον εμπορικό έλεγχο.',
+          outcome: 'Καλύτερη εικόνα αγορών, μεγαλύτερη διαφάνεια και ισχυρότερη διαπραγματευτική βάση.',
+        },
+      ]
+    : [
+        {
+          label: 'Scenario 01',
+          sector: 'Restaurant / Food Service',
+          title: 'Cost structure and pricing policy realignment',
+          text: 'Review of costing, commercial logic and menu structure to support stronger margin control and clearer decision-making.',
+          outcome: 'Focused on cost control, margin improvement and a clearer commercial strategy.',
+        },
+        {
+          label: 'Scenario 02',
+          sector: 'Hotel / Hospitality',
+          title: 'Operational organization and process improvement',
+          text: 'Mapping of workflows, responsibilities and friction points to support more stable daily operations and better team coordination.',
+          outcome: 'Focused on structure, execution consistency and operational efficiency.',
+        },
+        {
+          label: 'Scenario 03',
+          sector: 'Procurement & Supply',
+          title: 'Purchasing control and supplier evaluation',
+          text: 'Collection and analysis of purchasing data, price monitoring and support for decisions that strengthen commercial control.',
+          outcome: 'Better purchasing visibility, more transparency and a stronger negotiation base.',
+        },
+      ]
+
   return (
     <main style={{ paddingTop: 'var(--hp-header-h, 72px)' }}>
       <section id="home" className="onepage-section--hero hp-heroShell">
@@ -216,47 +265,62 @@ export default async function Page({ params }: any) {
       <section id="casestudies" className="onepage-section onepage-band">
         <div className="onepage-eyebrow">{t.nav.casestudies}</div>
 
-        <h2 className="onepage-title--section">
-          {locale === 'el'
-            ? 'Παραδείγματα εφαρμογής και επιχειρησιακής παρέμβασης'
-            : 'Examples of implementation and operational intervention'}
-        </h2>
-
-        <p className="onepage-copy">
-          {locale === 'el'
-            ? 'Σύντομα θα δημοσιευθούν επιλεγμένα case studies που θα παρουσιάζουν ενδεικτικά έργα, προκλήσεις, παρεμβάσεις και αποτελέσματα σε επιχειρήσεις εστίασης και τουρισμού.'
-            : 'Selected case studies will be published soon, presenting indicative projects, challenges, interventions and outcomes in hospitality and tourism businesses.'}
-        </p>
-
-        <div style={{ height: 30 }} />
-
-        <div className="onepage-grid onepage-grid--3">
-          <article className="onepage-card">
-            <h3>{locale === 'el' ? 'Κοστολόγηση & τιμολογιακή πολιτική' : 'Costing & pricing policy'}</h3>
-            <p>
+        <div className="hp-casesTop">
+          <div>
+            <h2 className="onepage-title--section hp-casesTitle">
               {locale === 'el'
-                ? 'Δομημένη προσέγγιση για έλεγχο κόστους, βελτίωση περιθωρίου και καθαρότερη εμπορική στρατηγική.'
-                : 'A structured approach for cost control, margin improvement and a clearer commercial strategy.'}
-            </p>
-          </article>
+                ? 'Ενδεικτικά πεδία επιχειρησιακής παρέμβασης'
+                : 'Indicative fields of operational intervention'}
+            </h2>
+          </div>
 
-          <article className="onepage-card">
-            <h3>{locale === 'el' ? 'Λειτουργική οργάνωση' : 'Operational organization'}</h3>
-            <p>
+          <div className="hp-casesIntroWrap">
+            <p className="onepage-copy hp-casesLead">
               {locale === 'el'
-                ? 'Ανασχεδιασμός ροών, ρόλων και διαδικασιών για πιο αποδοτική καθημερινή λειτουργία.'
-                : 'Redesign of workflows, roles and procedures for more efficient day-to-day operation.'}
+                ? 'Το section αυτό παρουσιάζει ενδεικτικά σενάρια έργων και τύπους παρεμβάσεων που μπορούν να υποστηριχθούν σε επιχειρήσεις εστίασης και τουρισμού.'
+                : 'This section presents indicative project scenarios and intervention types that can be supported in hospitality and tourism businesses.'}
             </p>
-          </article>
 
-          <article className="onepage-card">
-            <h3>{locale === 'el' ? 'Προμήθειες & έλεγχος αγορών' : 'Procurement & purchasing control'}</h3>
-            <p>
+            <p className="onepage-copy hp-casesIntro">
               {locale === 'el'
-                ? 'Παρακολούθηση τιμών, αξιολόγηση προμηθευτών και υποστήριξη εμπορικών αποφάσεων με καλύτερη εικόνα δεδομένων.'
-                : 'Price monitoring, supplier evaluation and support for commercial decisions through better data visibility.'}
+                ? 'Σύντομα θα προστεθούν αναλυτικότερα case studies με δομή, προκλήσεις, προσέγγιση και αποτέλεσμα.'
+                : 'Detailed case studies with structure, challenges, approach and outcomes will be added soon.'}
             </p>
-          </article>
+          </div>
+        </div>
+
+        <div style={{ height: 34 }} />
+
+        <div className="hp-casesHighlight">
+          <div className="hp-casesHighlightEyebrow">
+            {locale === 'el' ? 'Εστίαση στο αποτέλεσμα' : 'Outcome-oriented approach'}
+          </div>
+
+          <p className="hp-casesHighlightText">
+            {locale === 'el'
+              ? 'Κάθε παρέμβαση σχεδιάζεται με στόχο να ενισχύει τον έλεγχο, τη λειτουργική συνέπεια και την ικανότητα της επιχείρησης να λαμβάνει πιο σωστές και έγκαιρες αποφάσεις.'
+              : 'Each intervention is designed to strengthen control, operational consistency and the business’s ability to make better and more timely decisions.'}
+          </p>
+        </div>
+
+        <div style={{ height: 28 }} />
+
+        <div className="onepage-grid onepage-grid--3 hp-casesGrid">
+          {caseStudies.map((item) => (
+            <article key={item.label} className="onepage-card hp-caseCard">
+              <div className="hp-caseMeta">{item.label}</div>
+              <div className="hp-caseSector">{item.sector}</div>
+              <h3 className="hp-caseTitle">{item.title}</h3>
+              <p className="hp-caseText">{item.text}</p>
+
+              <div className="hp-caseOutcomeBlock">
+                <div className="hp-caseOutcomeLabel">
+                  {locale === 'el' ? 'Επιδιωκόμενο αποτέλεσμα' : 'Intended outcome'}
+                </div>
+                <div className="hp-caseOutcomeText">{item.outcome}</div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

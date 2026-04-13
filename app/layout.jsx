@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { Montserrat, Open_Sans } from 'next/font/google';
 
@@ -23,6 +24,9 @@ export const metadata = {
   },
   description:
     'Strategic, operational and costing support for hospitality and tourism businesses.',
+  verification: {
+    google: 'X7g0NZKaQJpE_d97KcDcOWZIgD-oZPmvLAqBSAQqdn4',
+  },
   openGraph: {
     type: 'website',
     siteName: 'HORECA Plus',
@@ -71,7 +75,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="el" className={`${montserrat.variable} ${openSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

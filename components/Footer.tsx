@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { siteImages } from "src/content/images";
 
 type Props = {
   locale: "el" | "en";
@@ -32,6 +34,14 @@ export default function Footer({ locale, messages }: Props) {
               ? "Υποστηρίζουμε επιχειρήσεις με πρακτική σκέψη, επιχειρησιακή γνώση και λύσεις που οδηγούν σε καλύτερο έλεγχο, οργάνωση και αποτέλεσμα."
               : "We support businesses with practical thinking, operational expertise and solutions that lead to better control, organization and results."}
           </p>
+          <div className="hp-footerLogo">
+            <Image
+              src={siteImages.logos.footer}
+              alt="HORECA Plus"
+              width={150}
+              height={64}
+            />
+          </div>
         </div>
 
         <div className="hp-footerCol">
@@ -40,11 +50,14 @@ export default function Footer({ locale, messages }: Props) {
           </h4>
 
           <nav className="hp-footerNav">
-            <Link href={`/${locale}/home#home`}>{nav.home}</Link>
-            <Link href={`/${locale}/home#about`}>{nav.about}</Link>
-            <Link href={`/${locale}/home#services`}>{nav.services}</Link>
-            <Link href={`/${locale}/home#casestudies`}>{nav.casestudies}</Link>
-            <Link href={`/${locale}/home#contact`}>{nav.contact}</Link>
+            <Link href={`/${locale}/home`}>{nav.home}</Link>
+            <Link href={`/${locale}/about`}>{nav.about}</Link>
+            <Link href={`/${locale}/services`}>{nav.services}</Link>
+            <Link href={`/${locale}/casestudies`}>{nav.casestudies}</Link>
+            <Link href={`/${locale}/request-consultation`}>
+              {locale === "el" ? "Πρώτη συζήτηση" : "Introductory call"}
+            </Link>
+            <Link href={`/${locale}/contact`}>{nav.contact}</Link>
           </nav>
         </div>
 
@@ -54,6 +67,7 @@ export default function Footer({ locale, messages }: Props) {
           </h4>
 
           <div className="hp-footerContact">
+            <span>{locale === "el" ? "Επτανήσου 3, Βούλα, 16673, Αθήνα" : "3 Eptanisou St., Voula, 16673, Athens"}</span>
             <a href={`tel:${contact.phone}`}>{contact.phone}</a>
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={socials.facebook} target="_blank" rel="noopener noreferrer">
@@ -86,8 +100,8 @@ export default function Footer({ locale, messages }: Props) {
         .hp-footerInner {
           display: grid;
           grid-template-columns: 1.3fr 0.8fr 1fr;
-          gap: 36px;
-          padding: 56px 16px 28px;
+          gap: 30px;
+          padding: 8px 16px 14px;
         }
 
         .hp-footerCol {
@@ -95,7 +109,7 @@ export default function Footer({ locale, messages }: Props) {
         }
 
         .hp-footerEyebrow {
-          margin-bottom: 12px;
+          margin-bottom: 8px;
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.12em;
@@ -105,8 +119,8 @@ export default function Footer({ locale, messages }: Props) {
         }
 
         .hp-footerTitle {
-          margin: 0 0 14px;
-          font-size: 28px;
+          margin: 0 0 10px;
+          font-size: 23px;
           line-height: 1.15;
           font-weight: 700;
           color: #fff;
@@ -116,12 +130,23 @@ export default function Footer({ locale, messages }: Props) {
         .hp-footerText {
           margin: 0;
           font-size: 15px;
-          line-height: 1.8;
+          line-height: 1.55;
           color: rgba(244, 241, 234, 0.86);
         }
 
+        .hp-footerLogo {
+          margin-top: 12px;
+          line-height: 0;
+        }
+
+        .hp-footerLogo :global(img) {
+          width: 120px;
+          height: auto;
+          object-fit: contain;
+        }
+
         .hp-footerHeading {
-          margin: 0 0 14px;
+          margin: 0 0 10px;
           font-size: 15px;
           line-height: 1.2;
           font-weight: 700;
@@ -134,16 +159,26 @@ export default function Footer({ locale, messages }: Props) {
         .hp-footerNav,
         .hp-footerContact {
           display: grid;
-          gap: 10px;
+          gap: 0;
         }
 
-        .hp-footer a {
+        .hp-footer :global(a),
+        .hp-footerContact span {
           color: rgba(255, 255, 255, 0.86);
           text-decoration: none;
           transition: color 0.2s ease;
+          line-height: 1.1;
+          padding: 1px 0;
         }
 
-        .hp-footer a:hover {
+        .hp-footerNav :global(a) {
+          display: block;
+          line-height: 2;
+          padding: 2;
+          margin: 0;
+        }
+
+        .hp-footer :global(a:hover) {
           color: #fff;
         }
 
@@ -151,7 +186,7 @@ export default function Footer({ locale, messages }: Props) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 18px 16px 28px;
+          padding: 14px 16px 18px;
           border-top: 1px solid rgba(255, 255, 255, 0.08);
           font-size: 13px;
           color: rgba(255, 255, 255, 0.62);
@@ -160,8 +195,8 @@ export default function Footer({ locale, messages }: Props) {
         @media (max-width: 900px) {
           .hp-footerInner {
             grid-template-columns: 1fr;
-            gap: 28px;
-            padding: 40px 16px 24px;
+            gap: 18px;
+            padding: 8px 16px 16px;
           }
 
           .hp-footerTitle {

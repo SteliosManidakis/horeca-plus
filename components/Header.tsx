@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { siteImages } from "src/content/images";
 
 type AppLocale = "el" | "en";
 type Props = { locale: AppLocale; messages: any };
@@ -15,25 +16,17 @@ export default function Header({ locale, messages }: Props) {
   const currentPath = currentPathRaw === "/" ? "/home" : currentPathRaw;
 
   const [open, setOpen] = useState(false);
-  const [activeId, setActiveId] = useState("home");
   const drawerRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
   const L = (p: string) => `/${locale}${p}`;
 
-  const items = useMemo(
-    () => [
-      { id: "home", href: L("/home#home"), label: t.home ?? "Home" },
-      { id: "about", href: L("/home#about"), label: t.about ?? "About" },
-      { id: "services", href: L("/home#services"), label: t.services ?? "Services" },
-      { id: "casestudies", href: L("/home#casestudies"), label: t.casestudies ?? "Case Studies" },
-      { id: "contact", href: L("/home#contact"), label: t.contact ?? "Contact" },
-    ],
-    [locale, t]
-  );
-
-  const homePath = `/${locale}/home`;
-  const isHomeView = pathname === homePath || pathname === `/${locale}`;
+  const items = [
+    { id: "home", path: "/home", href: L("/home"), label: t.home ?? "Home" },
+    { id: "about", path: "/about", href: L("/about"), label: t.about ?? "About" },
+    { id: "services", path: "/services", href: L("/services"), label: t.services ?? "Services" },
+    { id: "casestudies", path: "/casestudies", href: L("/casestudies"), label: t.casestudies ?? "Case Studies" },
+  ];
 
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -49,40 +42,6 @@ export default function Header({ locale, messages }: Props) {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  useEffect(() => {
-    if (!isHomeView) {
-      setActiveId("");
-      return;
-    }
-
-    const ids = ["home", "about", "services", "casestudies", "contact"];
-
-    const updateActiveSection = () => {
-      const offset = 150;
-      let current = "home";
-
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        const top = el.getBoundingClientRect().top;
-        if (top - offset <= 0) current = id;
-      }
-
-      setActiveId(current);
-    };
-
-    updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
-    window.addEventListener("hashchange", updateActiveSection);
-
-    return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
-      window.removeEventListener("hashchange", updateActiveSection);
-    };
-  }, [isHomeView, pathname]);
-
   const nextLocale: AppLocale = locale === "el" ? "en" : "el";
   const langLabel = nextLocale.toUpperCase();
   const langHref = `/${nextLocale}${currentPath}`;
@@ -94,11 +53,12 @@ export default function Header({ locale, messages }: Props) {
       <div className="hp-inner container">
         <Link href={L("/home")} className="hp-brand" aria-label="HORECA Plus">
           <Image
-            src="/images/home/hrc.jpg"
+            src={siteImages.logos.header}
             alt="HORECA Plus"
             width={220}
             height={70}
             className="hp-logo"
+            style={{ width: 118, height: "auto" }}
             priority
           />
         </Link>
@@ -108,12 +68,19 @@ export default function Header({ locale, messages }: Props) {
             <Link
               key={it.href}
               href={it.href}
-              className={`hp-link ${isHomeView && activeId === it.id ? "hp-active" : ""}`}
+              className={`hp-link ${currentPath === it.path ? "hp-active" : ""}`}
               onClick={() => setOpen(false)}
             >
               {it.label}
             </Link>
           ))}
+          <Link
+            href={L("/contact")}
+            className={`hp-link ${currentPath === "/contact" ? "hp-active" : ""}`}
+            onClick={() => setOpen(false)}
+          >
+            {t.contact ?? "Contact"}
+          </Link>
         </nav>
 
         <Link href={langHref} className="hp-langSwitch" aria-label={langAria}>
@@ -149,12 +116,19 @@ export default function Header({ locale, messages }: Props) {
             <Link
               key={it.href}
               href={it.href}
-              className={`hp-mobileLink ${isHomeView && activeId === it.id ? "hp-active" : ""}`}
+              className={`hp-mobileLink ${currentPath === it.path ? "hp-active" : ""}`}
               onClick={() => setOpen(false)}
             >
               {it.label}
             </Link>
           ))}
+          <Link
+            href={L("/contact")}
+            className={`hp-mobileLink ${currentPath === "/contact" ? "hp-active" : ""}`}
+            onClick={() => setOpen(false)}
+          >
+            {t.contact ?? "Contact"}
+          </Link>
         </nav>
       </div>
 
@@ -188,17 +162,12 @@ export default function Header({ locale, messages }: Props) {
         .hp-logo {
           display: block;
           height: auto;
-          width: 160px;
           object-fit: contain;
         }
 
         @media (min-width: 900px) {
           .hp-header {
             --hp-header-h: 82px;
-          }
-
-          .hp-logo {
-            width: 190px;
           }
         }
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "src/lib/analytics";
 
 type State = "idle" | "sending" | "ok" | "error";
 type Opt = "yes" | "open" | null;
@@ -66,6 +67,7 @@ export default function ContactForm({ t }: { t: any }) {
 
       if (res.ok) {
         setState("ok");
+        trackEvent("contact_request_submit");
         form.reset();
         setHoreca(null);
         setTourism(null);

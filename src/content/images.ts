@@ -1,6 +1,6 @@
 export const siteImages = {
   // EDIT_SITE_IMAGES_HERE
-  homeHero: "/images/home/hero.jpg",
+  homeHero: "/images/home/homepage.png",
   aboutHero: "/images/home/home.jpg",
   socialShare: "/images/home/horecaplus.jpg",
   logos: {

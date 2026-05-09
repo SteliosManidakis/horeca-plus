@@ -2,6 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { openCookieSettings } from "components/CookieConsent";
 import { siteImages } from "src/content/images";
 
 type Props = {
@@ -67,18 +70,30 @@ export default function Footer({ locale, messages }: Props) {
           </h4>
 
           <div className="hp-footerContact">
-            <span>{locale === "el" ? "Επτανήσου 3, Βούλα, 16673, Αθήνα" : "3 Eptanisou St., Voula, 16673, Athens"}</span>
-            <a href={`tel:${contact.phone}`}>{contact.phone}</a>
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <span className="hp-footerContactItem">
+              <FiMapPin aria-hidden />
+              <span>{locale === "el" ? "Επτανήσου 3, Βούλα, 16673, Αθήνα" : "3 Eptanisou St., Voula, 16673, Athens"}</span>
+            </span>
+            <a href={`tel:${contact.phone}`} className="hp-footerContactItem">
+              <FiPhone aria-hidden />
+              <span>{contact.phone}</span>
+            </a>
+            <a href={`mailto:${contact.email}`} className="hp-footerContactItem">
+              <FiMail aria-hidden />
+              <span>{contact.email}</span>
+            </a>
             <a href={socials.facebook} target="_blank" rel="noopener noreferrer">
-              {socials.facebookLabel}
+              <FaFacebook aria-hidden />
+              <span>{socials.facebookLabel}</span>
             </a>
             <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
-              {socials.instagramLabel}
+              <FaInstagram aria-hidden />
+              <span>{socials.instagramLabel}</span>
             </a>
             {linkedinOk && (
               <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">
-                {socials.linkedinLabel}
+                <FaLinkedin aria-hidden />
+                <span>{socials.linkedinLabel}</span>
               </a>
             )}
           </div>
@@ -87,6 +102,17 @@ export default function Footer({ locale, messages }: Props) {
 
       <div className="hp-footerBottom container">
         <span>{messages.footer.copyright}</span>
+        <nav className="hp-footerLegal" aria-label={locale === "el" ? "Νομικά" : "Legal"}>
+          <Link href={`/${locale}/terms`}>
+            {locale === "el" ? "Όροι" : "Terms"}
+          </Link>
+          <Link href={`/${locale}/privacy-cookies`}>
+            {locale === "el" ? "Απόρρητο & Cookies" : "Privacy & Cookies"}
+          </Link>
+          <button type="button" onClick={openCookieSettings}>
+            {locale === "el" ? "Ρυθμίσεις cookies" : "Cookie settings"}
+          </button>
+        </nav>
       </div>
 
       <style jsx>{`
@@ -162,6 +188,25 @@ export default function Footer({ locale, messages }: Props) {
           gap: 0;
         }
 
+        .hp-footerContact {
+          gap: 20px;
+        }
+
+        .hp-footerContact :global(a),
+        .hp-footerContactItem {
+          display: grid;
+          grid-template-columns: 16px 1fr;
+          gap: 10px;
+          align-items: start;
+        }
+
+        .hp-footerContact :global(svg) {
+          width: 14px;
+          height: 14px;
+          margin-top: 2px;
+          color: #c7a15b;
+        }
+
         .hp-footer :global(a),
         .hp-footerContact span {
           color: rgba(255, 255, 255, 0.86);
@@ -176,6 +221,34 @@ export default function Footer({ locale, messages }: Props) {
           line-height: 2;
           padding: 2;
           margin: 0;
+        }
+
+        .hp-footerLegal {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+        }
+
+        .hp-footerLegal :global(a) {
+          color: rgba(255, 255, 255, 0.62);
+          line-height: 1;
+          padding: 0;
+          text-decoration: none;
+        }
+
+        .hp-footerLegal button {
+          border: 0;
+          background: transparent;
+          color: rgba(255, 255, 255, 0.62);
+          cursor: pointer;
+          font: inherit;
+          line-height: 1;
+          padding: 0;
+        }
+
+        .hp-footerLegal :global(a:hover),
+        .hp-footerLegal button:hover {
+          color: #fff;
         }
 
         .hp-footer :global(a:hover) {
@@ -204,6 +277,9 @@ export default function Footer({ locale, messages }: Props) {
           }
 
           .hp-footerBottom {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 12px;
             padding: 16px 16px 24px;
           }
         }

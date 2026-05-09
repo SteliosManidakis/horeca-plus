@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { serviceSelectOptions, type Locale } from "src/content/services";
+import { trackEvent } from "src/lib/analytics";
 
 type Props = {
   locale: Locale;
@@ -57,6 +58,9 @@ export default function ConsultationForm({ locale, initialService = "" }: Props)
       }
 
       setState("ok");
+      trackEvent("consultation_request_submit", {
+        service: payload.service || "not_selected",
+      });
       form.reset();
     } catch (err: any) {
       setState("error");

@@ -1,6 +1,6 @@
-import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { Montserrat, Open_Sans } from 'next/font/google';
+import CookieConsent from 'components/CookieConsent';
 
 const montserrat = Montserrat({
   subsets: ['latin', 'latin-ext'],
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
     <html lang="el" className={`${montserrat.variable} ${openSans.variable}`}>
       <body>
         {children}
-        <Analytics />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -182,7 +182,7 @@ export default async function CaseStudiesPage({
         <h2>
           {copy(
             locale,
-            "Θέλεις να δούμε ποιο σενάριο μοιάζει περισσότερο με τη δική σου επιχείρηση;",
+            "Θέλεις να δούμε ποιο σενάριο ταιριάζει περισσότερο με τη δική σου επιχείρηση;",
             "Want to explore which scenario is closest to your business?"
           )}
         </h2>

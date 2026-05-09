@@ -45,7 +45,7 @@ function serviceJsonLd(locale: Locale) {
         url: siteUrl,
         logo: `${siteUrl}${siteImages.logos.header}`,
         image: `${siteUrl}${siteImages.socialShare}`,
-        email: "horecaplusgr@gmail.com",
+        email: "info@horeca-plus.gr",
         telephone: "+30 693 72 46 891",
         address: {
           "@type": "PostalAddress",

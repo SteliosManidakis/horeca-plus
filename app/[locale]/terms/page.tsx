@@ -166,7 +166,7 @@ export default async function TermsPage({
         <h2>{copy(locale, "9. Επικοινωνία", "9. Contact")}</h2>
         <p>
           {copy(locale, "Για ερωτήσεις σχετικά με τους όρους, μπορείς να επικοινωνήσεις στο", "For questions about these terms, contact")}{" "}
-          <a href="mailto:horecaplusgr@gmail.com">horecaplusgr@gmail.com</a>.
+          <a href="mailto:info@horeca-plus.gr">info@horeca-plus.gr</a>.
         </p>
       </section>
     </article>

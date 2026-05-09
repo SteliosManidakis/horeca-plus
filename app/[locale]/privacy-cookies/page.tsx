@@ -78,7 +78,7 @@ export default async function PrivacyCookiesPage({
             "Υπεύθυνος για την επεξεργασία δεδομένων μέσω της ιστοσελίδας είναι η HORECA Plus. Για θέματα προσωπικών δεδομένων μπορείς να επικοινωνήσεις στο",
             "The controller for data processed through this website is HORECA Plus. For personal data matters, contact"
           )}{" "}
-          <a href="mailto:horecaplusgr@gmail.com">horecaplusgr@gmail.com</a>.
+          <a href="mailto:info@horeca-plus.gr">info@horeca-plus.gr</a>.
         </p>
       </section>
 

@@ -1,28 +1,28 @@
 export const siteImages = {
   // EDIT_SITE_IMAGES_HERE
   homeHero: "/images/home/homepage.png",
-  aboutHero: "/images/home/home.jpg",
+  aboutHero: "/images/home/aboutHero.png",
   socialShare: "/images/home/horecaplus.jpg",
   logos: {
     header: "/images/home/short_logo.png",
     footer: "/images/home/short.png",
   },
-  contactHero: "/images/contact/contact.jpg",
+  contactHero: "/images/contact/contact2.jpg",
   services: {
-    financialPlanning: "/images/services/image1.jpg",
-    productCosting: "/images/services/image2.jpg",
-    pricingPolicy: "/images/home/horecaplus1.jpg",
-    operationsOrganization: "/images/home/horecaplus2.jpg",
-    procurementControl: "/images/casestudies/case1.jpg",
-    menuEngineering: "/images/casestudies/case2.jpg",
-    serviceTraining: "/images/casestudies/case3.jpg",
-    accountingSupport: "/images/casestudies/case4.jpg",
-    complianceSupport: "/images/casestudies/case5.jpg",
+    financialPlanning: "/images/services/businesscontrol.png",
+    productCosting: "/images/services/productCosting.png",
+    pricingPolicy: "/images/services/pricingPolicy.png",
+    operationsOrganization: "/images/services/operationsOrganization.png",
+    procurementControl: "/images/services/procurementControl.png",
+    menuEngineering: "/images/services/menuEngineering.png",
+    serviceTraining: "/images/services/serviceTraining.png",
+    accountingSupport: "/images/services/accountingSupport.png",
+    complianceSupport: "/images/services/complianceSupport.png",
   },
   caseStudies: {
-    costControl: "/images/casestudies/case1.jpg",
-    operations: "/images/casestudies/case2.jpg",
-    procurement: "/images/casestudies/case3.jpg",
+    costControl: "/images/casestudies/costControl.png",
+    operations: "/images/casestudies/operations.png",
+    procurement: "/images/casestudies/procurement.png",
   },
 } as const;
 

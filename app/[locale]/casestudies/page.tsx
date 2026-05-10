@@ -182,8 +182,8 @@ export default async function CaseStudiesPage({
         <h2>
           {copy(
             locale,
-            "Θέλεις να δούμε ποιο σενάριο ταιριάζει περισσότερο με τη δική σου επιχείρηση;",
-            "Want to explore which scenario is closest to your business?"
+            "Θέλεις να δούμε πως μπορούμε να βοηθήσουμε και τη δική σου επιχείρηση;",
+            "Want to explore how to help your business too?"
           )}
         </h2>
         <Link href={`/${locale}/request-consultation`} className="onepage-btn onepage-btn--primary">

@@ -44,7 +44,7 @@ function getCases(locale: Locale) {
       ]
     : [
         {
-          label: "Scenario 01",
+          label: "01",
           sector: "Restaurant / Food Service",
           title: "Cost structure and pricing policy realignment",
           text: "Review of costing, commercial logic and menu structure to support stronger margin control and clearer decision-making.",
@@ -53,7 +53,7 @@ function getCases(locale: Locale) {
           image: siteImages.caseStudies.costControl,
         },
         {
-          label: "Scenario 02",
+          label: "02",
           sector: "Hotel / Hospitality",
           title: "Operational organization and process improvement",
           text: "Mapping of workflows, responsibilities and friction points to support more stable daily operations and better team coordination.",
@@ -62,7 +62,7 @@ function getCases(locale: Locale) {
           image: siteImages.caseStudies.operations,
         },
         {
-          label: "Scenario 03",
+          label: "03",
           sector: "Procurement & Supply",
           title: "Purchasing control and supplier evaluation",
           text: "Collection and analysis of purchasing data, price monitoring and support for decisions that strengthen commercial control.",
@@ -79,11 +79,11 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const title = copy(locale, "Case Studies και ενδεικτικά σενάρια έργων", "Case studies and indicative project scenarios");
+  const title = copy(locale, "Case Studies και σενάρια έργων", "Case studies and project scenarios");
   const description = copy(
     locale,
-    "Ενδεικτικά σενάρια επιχειρησιακής παρέμβασης για επιχειρήσεις εστίασης, hospitality και τουρισμού.",
-    "Indicative operational intervention scenarios for food service, hospitality and tourism businesses."
+    "Σενάρια επιχειρησιακής παρέμβασης για επιχειρήσεις εστίασης, hospitality και τουρισμού.",
+    "Operational intervention scenarios for food service, hospitality and tourism businesses."
   );
   const canonical = `${siteUrl}/${locale}/casestudies`;
 
@@ -131,8 +131,8 @@ export default async function CaseStudiesPage({
         <h1>
           {copy(
             locale,
-            "Ενδεικτικά σενάρια επιχειρησιακής παρέμβασης",
-            "Indicative operational intervention scenarios"
+            "Σενάρια επιχειρησιακής παρέμβασης",
+            "Operational intervention scenarios"
           )}
         </h1>
         <p>

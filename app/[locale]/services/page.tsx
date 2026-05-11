@@ -149,7 +149,7 @@ export default async function ServicesPage({
           <h1 className="servicesHero__title">
             {label(
               locale,
-              "Συμβουλευτική υποστήριξη για πιο οργανωμένες και αποδοτικές επιχειρήσεις HORECA",
+              "Υποστήριξη για πιο οργανωμένες και αποδοτικές επιχειρήσεις HORECA",
               "Consulting support for more organized and profitable HORECA businesses"
             )}
           </h1>
